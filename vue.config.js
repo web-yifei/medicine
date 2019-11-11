@@ -8,8 +8,12 @@ module.exports = {
     proxy: {
     '/front': {
         target: 'http://apps.yaocaimaimai.com',
+        changeOrigin: true
+       },
+    '/api': {
+      target: 'http://localhost:3000',
       changeOrigin: true
-       }
+    }
     },
    
   },

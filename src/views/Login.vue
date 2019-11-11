@@ -1,5 +1,5 @@
 <template>
-    <form action="" class="login-form" :style="{height:indexHeight}">
+    <div class="login-form" :style="{height:indexHeight}">
         <h1>Login</h1>
         <div class="txtb">
             <input type="text" ref="user" @focus="txtbFocusUser" @blur="txtBlurUser">
@@ -9,14 +9,15 @@
             <input type="password" ref="psw"  @focus="txtbFocusPsw" @blur="txtBlurPsw">
             <span data-placeholder="Password"></span>
         </div>
-        <input type="submit" class="logbtn" value='Login'>
+        <input type="submit" class="logbtn" value='Login' @click="submitClick">
         <div class="bottom-text">
-            Don't have account? <a href="#">Sign up</a>
+            Don't have account? <router-link to="/register">Sign up</router-link> 
         </div>
-    </form>
+    </div>
 </template>
 <script>
 import { Field } from 'mint-ui'
+import Axios from 'axios'
 export default {
   data() {
     return {
@@ -27,20 +28,40 @@ export default {
     this.indexHeight = document.documentElement.clientHeight - 50 + 'px'
   },
   methods: {
-    handleClick () {
-      this.$router.push('register')
+    submitClick(){
+      let [username,psw] = [this.$refs.user.value, this.$refs.psw.value]
+      Axios({
+        url: '/api/login/validate',
+        method: 'post',
+        data: {
+          tel: username,
+          password: psw
+        }
+      }).then(res => {
+        console.log(res.data);
+        if(res.data.login === 0){
+          
+        }else{
+          localStorage.setItem('token',res.data.token)
+          this.$router.push('/my')
+        }
+      })
     },
     txtbFocusPsw(){
       this.$refs.psw.classList.add('focus')
     },
     txtBlurPsw(){
-      this.$refs.psw.classList.remove('focus')
+      if(this.$refs.psw.value === ''){
+          this.$refs.psw.classList.remove('focus')
+      }
     },
     txtbFocusUser(){
       this.$refs.user.classList.add('focus')
     },
     txtBlurUser(){
-      this.$refs.user.classList.remove('focus')
+      if(this.$refs.user.value === ''){
+        this.$refs.user.classList.remove('focus')
+      }
     }
   }
 }
@@ -57,7 +78,7 @@ export default {
     width: 100%;
     background: #f7f7f7;
     height: 100%;
-    padding: 80px 40px;
+    padding: .8rem .4rem;
     /* border-radius: 10px;
     position: absolute;
     left: 50%;
@@ -67,31 +88,31 @@ export default {
 
 .login-form h1{
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: .6rem;
 }
 
 .txtb{
-    border-bottom: 2px solid #adadad;
+    border-bottom: .02rem solid #adadad;
     position: relative;
-    margin: 30px 0;
+    margin: .3rem 0;
 }
 
 .txtb input{
-    font-size: 15px;
-    color: #adadad;
+    font-size: .15rem;
+    color: #3e3e3e;
     border: none;
     width: 100%;
     outline: none;
     background: none;
-    padding: 0 5px;
-    height: 40px;
+    padding: 0 .05rem;
+    height: .4rem;
 }
 
 .txtb span::before{
     content:attr(data-placeholder);
     position: absolute;
     top: 50%;
-    left: 5px;
+    left: .05rem;
     color: #aaaaaa;
     transform: translateY(-50%);
     z-index: 1;
@@ -102,15 +123,15 @@ export default {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -2px;
+    bottom: -.02rem;
     width: 0%;
-    height: 2px;
+    height: .02rem;
     background: linear-gradient(120deg,cyan,orange);
     transition: .5s;
 }
 
 .focus + span::before{
-    top: -5px;
+    top: -.05rem;
 }
 
 .focus + span::after{
@@ -120,14 +141,10 @@ export default {
 .logbtn{
   display: block;
   width: 100%;
-  height: 50px;
+  height: .5rem;
   border: none;
   background: linear-gradient(120deg,cyan,orange);
   color: #fff;
   transition: .5s
 }
-
-
-
-
 </style>
