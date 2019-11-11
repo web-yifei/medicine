@@ -9,27 +9,28 @@
       </mt-search>
     </div>
     
-    <swiper :options="options" :key="looplist.length">
+    <swiper :options="loopoptions" v-if="looplist.length" style="margin-top: .5rem;" >
       <div class="swiper-slide" v-for="data in looplist" :key="data.id">
-        <img :src="data.appImg" alt />
+        <img :src="data.appImg" />
       </div>
     </swiper>
     
-     <aside>
-         <ul>
-          <router-link to="" tag="li">
-          <div></div>
-          <span>热销药材</span>
-          </router-link>
-
-        </ul>
-     </aside>
-    <!-- <router-view></router-view> -->
+    <asidebar></asidebar>
  
+    <h3>今日推荐</h3>
+    <swiper :options="navoptions" v-if="swiperlist.length">
+           <div class="swiper-slide nav" v-for="(data,index) in swiperlist" :key="index">
+                <img :src="data.icon">
+          </div>
+    </swiper>
+
+    <mainbar></mainbar>
   </div>
 </template>
 <script>
 import swiper from "@/components/swiper";
+import asidebar from '@/components/asidebar';
+import mainbar from '@/components/mainbar';
 import Axios from "axios";
 // import { Indicator } from "mint-ui";
 import { Search } from "mint-ui";
@@ -43,7 +44,8 @@ export default {
   data() {
     return {
       looplist: [],
-      options: {
+      swiperlist:[],
+      loopoptions: {
         loop: true,
         autoplay: {
           delay: 2500,
@@ -52,11 +54,18 @@ export default {
         pagination: {
           el: ".swiper-pagination"
         }
+      },
+      navoptions:{
+        slidesPerView: 3,
+        spaceBetween: 3,
+        freeMode: true,
       }
-    };
+    }
   },
   components: {
-    swiper
+    swiper,
+    asidebar,
+    mainbar,
   },
   mounted() {
     Axios({
@@ -78,6 +87,29 @@ export default {
       this.looplist = res.data.biz_result.list;
       console.log(this.looplist);
     });
+
+    Axios({
+      url:'/front/handle/control.do',
+      method:'post',
+      data:{
+        biz_module: "breedService", biz_method: "hotDrugPropertiesInfo", 
+        biz_param: {pn: 1, pSize: 10},
+        biz_method: "hotDrugPropertiesInfo",
+        biz_module: "breedService",
+        biz_param: {pn: 1, pSize: 10},
+        version: "3.10.0"
+      },
+      headers: {
+        "mg-client": "H5",
+        "X-Requested-With": "XMLHttpRequest",
+        "Content-Type": "application/json;charset=UTF-8"
+      }
+      }).then(res => {
+      // console.log(res.data.biz_result)
+          this.swiperlist = res.data.biz_result.list;
+          console.log(this.swiperlist);
+        }
+     );
   }
 };
 </script>
@@ -100,29 +132,16 @@ export default {
   height: 100%;
   overflow: hidden;
 }
-aside{
-        border-bottom: 3px solid #ccc;
-        width: 100%;
-        height: .8rem;
-        background: white;
-        ul{
-            display: flex;
-            li{
-                flex: 1;
-                height: .5rem;
-                line-height: .5rem;
-                text-align: center;
-                span{
-                    display: block;
-                    height: .2rem;
-                    line-height: .2rem;
-                }
-                i{
-                    display: block;
-                    height: .3rem;
-                    line-height: .3rem;
-                }
-            }
-        }
+   .swiper-wrapper{
+      margin-top: 0;
+    }
+    .nav{
+        width: 1rem;
+        height: 1rem;
+      img{
+        width: 1rem;
+        height: 1rem;
+
+      }
     }
 </style>

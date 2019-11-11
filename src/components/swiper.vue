@@ -1,5 +1,5 @@
 <template>
-       <div class="swiper-container" >
+       <div class="swiper-container cyf" >
               <div class="swiper-wrapper">
                 <slot></slot>
               </div>
@@ -13,16 +13,19 @@ import 'swiper/css/swiper.min.css'//引入css
 export default {
     mounted() {
     /* eslint-disable no-new */
-     new Swiper('.swiper-container',this.options)
+    // console.log(this.classname);
+    // console.log(this.options);
+    
+     new Swiper(this.classname?'.'+this.classname:'.cyf',this.options)
     },
-    props:['options']
+    props:['options','classname']
 }
 </script>
 <style lang="scss" scoped>
     .swiper-container{
-        margin-top: .5rem;
+ 
         img{
-            height: 150%
+            height: 100%
         }
     }
     .swiper-pagination{
