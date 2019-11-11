@@ -1,14 +1,14 @@
 <template>
     <div class="body" :style="clientHeight">
       <Header :options="options"></Header>
-        个人中心
-       <router-link to="/login"><button>登录/注销11111111</button></router-link>
-       <button @click="feedback">反馈</button>
-       <router-link to="/amend"><button>修改密码</button></router-link>
+      <Title class="title"></Title>
+      <Item></Item>  
     </div>
 </template>
 <script>
 import Header from '@/components/Header'
+import Title from '@/views/My/Title'
+import Item from '@/views/My/Item'
 export default {
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
       }
     }
   },
-  components:{Header},
+  components:{Header,Title},
   mounted() {
     this.clientHeight.height=document.documentElement.clientHeight-0.5+'rem'
   },
@@ -47,6 +47,11 @@ export default {
 </script>
 <style lang="scss" scoped>
   .body{
-    background-color: #ccc;
+    background-color: #eee;
+    overflow: hidden;
+  }
+  .title{
+    margin-top: .55rem;
+    background-color: #fff
   }
 </style>
