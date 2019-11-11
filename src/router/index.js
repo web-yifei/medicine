@@ -32,7 +32,7 @@ const routes = [
     component: Dignose
   },
   {
-    path: '/my/:userid',
+    path: '/my',
     component: My
   },
   {

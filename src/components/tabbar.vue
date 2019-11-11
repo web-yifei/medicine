@@ -14,7 +14,7 @@
           <i class="iconfont icon-imagetext"></i>
           <span>问诊</span>
          </router-link>
-          <router-link to="/my/:userid" tag="li" >
+          <router-link to="/my" tag="li" >
           <i class="iconfont icon-account"></i>
           <span>我的</span>
          </router-link>
