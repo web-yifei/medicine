@@ -28,6 +28,7 @@
         left: 0px;
         width: 100%;
         height: .5rem;
+        border-top: 1px solid #ccc;
         background: white;
         z-index: 999;
         ul{

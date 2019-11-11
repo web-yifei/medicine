@@ -13,15 +13,16 @@ import 'swiper/css/swiper.min.css'//引入css
 export default {
     mounted() {
     /* eslint-disable no-new */
-    //  new Swiper('.swiper-container',this.options)
+     new Swiper('.swiper-container',this.options)
     },
     props:['options']
 }
 </script>
 <style lang="scss" scoped>
     .swiper-container{
+        margin-top: .5rem;
         img{
-            width: 100%;
+            height: 150%
         }
     }
     .swiper-pagination{

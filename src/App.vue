@@ -39,7 +39,7 @@ html{
         }
     }
     .router-link-exact-active,.router-link-active{
-        color: rgb(21, 167, 41)
+        color: rgb(192, 163, 34)
     }
   input{
        outline: none;
