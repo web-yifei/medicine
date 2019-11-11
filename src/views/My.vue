@@ -13,6 +13,14 @@ export default {
     feedback () {
       this.router.push({ path: `/feedback/${userId}` })
     }
+  },
+  beforeRouteEnter(to,from,next){
+    console.log('111');
+    if(!localStorage.getItem('token')){
+      next('/login')
+    }else{
+      next()
+    }
   }
 }
 </script>
