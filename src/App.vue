@@ -1,32 +1,53 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+      <tabbar></tabbar>
+      <router-view></router-view>
   </div>
 </template>
+<script>
+import Vue from 'vue'
+import Axios from 'axios'
+import tabbar from '@/components/tabbar'
+Vue.component('tabbar', tabbar)
+export default {
 
+}
+</script>
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body,h1,h2,h3,h4,h5,h6,p,a,img,ul,li,ol,dl,dt,dd,input,i{
+    padding: 0;
+    margin: 0;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+  *{
+    box-sizing: border-box;
+}
+body {
+    font-size: .14rem;
+    color: #333;
+    font-family: "微软雅黑";
+}
+body,
+html {
+    height: 100%;
+}
+html{
+		font-size: 26.67vw;
+	}
+  ul{
+        li{
+            list-style: none;
+        }
     }
+    .router-link-exact-active,.router-link-active{
+        color: rgb(21, 167, 41)
+    }
+  input{
+       outline: none;
+    }
+  img{
+    display: block;
   }
-}
+  .iconfont{
+    font-size: .16rem;
+  }
 </style>
