@@ -50,4 +50,13 @@ html{
   .iconfont{
     font-size: .16rem;
   }
+  .mint-search{
+    margin: 0 auto;
+    flex: 70%;
+  }
+  .mint-searchbar{
+      padding:3px 4px !important;
+      border-radius:.06rem;
+      top: .07rem;
+    }
 </style>

@@ -1,5 +1,6 @@
 <template>
     <mt-header fixed :title="title" :style="style"></mt-header>
+
 </template>
 <script>
 import { Header } from 'mint-ui';
