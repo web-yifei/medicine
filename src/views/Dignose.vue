@@ -4,20 +4,17 @@
          <router-link to="/doctors"><button>医生列表</button></router-link>
          <button @click="handleClick">doctor_img</button>
     </div> -->
-
-<div><mt-header fixed title="问诊"></mt-header>
-  <!-- <swiper :options="options" :key="looplist.length">
-      <div class="swiper-slide" v-for="data in looplist" >
-        <!-- <img :src='data.imgUrl'/> -->
-        <!-- {{data}}
-      </div> -->
-
-  <!-- </swiper> --> -->
-</div>
-
+<div>
+<mt-header fixed title="问诊"></mt-header>
+    <swiper :options="options" v-if="looplist.length" style="margin-top: .5rem;" >
+      <div class="swiper-slide" v-for="data in looplist" :key="data.id">
+        <!-- <img :src="data.appImg" /> -->
+      </div>
+    </swiper>
+ </div>
 </template>
 <script>
-import swiper from '@/components/Swiper'
+import swiper from '@/components/swiper'
 import { Header } from 'mint-ui';
 import Vue from 'vue'
 Vue.component(Header.name, Header);
@@ -34,8 +31,9 @@ export default {
           disableOnInteraction: false
         },
         pagination: {
-          el: '.swiper-pagination'
+          el: ".swiper-pagination"
         }
+        
       }
 
     }
