@@ -6,9 +6,11 @@
     </div> -->
 <div>
 <mt-header fixed title="问诊"></mt-header>
-    <swiper :options="options" v-if="looplist.length" style="margin-top: .5rem;" >
+    <swiper :options="options" v-if="looplist.length" style="margin-top: .5rem;height: 1.69rem;
+    width: 100%;" >
       <div class="swiper-slide" v-for="data in looplist" :key="data.id">
         <!-- <img :src="data.appImg" /> -->
+        {{data}}
       </div>
     </swiper>
  </div>
@@ -54,6 +56,6 @@ export default {
     background: #C0A322 ;
     width: 100%;
     font-size: 0.18rem;
-    height: .54rem;
+    height: .5rem;
   }
 </style>
