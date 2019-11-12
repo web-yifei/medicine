@@ -1,18 +1,31 @@
 <template>
     <div class="body">
         <div class="img">
-            <img src="" alt="">
+            <img :src="'http://localhost:3000'+$store.state.my_title.headPic" alt="">
         </div>
-        <p>何仙姑</p>
-        <mt-button size="small" type="danger" class="btn">注销</mt-button>
+        <p>{{$store.state.my_title.headName}}</p>
+        <mt-button size="small" type="danger" class="btn" @click="logoutClick">注销</mt-button>
     </div>
 </template>
 <script>
 import {Button} from 'mint-ui'
 import Vue from 'vue'
+import Axios from 'axios'
 Vue.component(Button.name, Button);
 export default {
-    
+    mounted() {
+        if(this.$store.state.my_title.headName === '' || this.$store.state.my_title.headPic === ''){
+            this.$store.dispatch('getMyInfoAction')
+        }else{
+            console.log('使用缓存');
+        }
+    },
+    methods: {
+        logoutClick(id){
+            localStorage.removeItem('token')
+            this.$router.push('/login')
+        }
+    },
 }
 </script>
 <style lang="scss" scoped>
@@ -26,6 +39,9 @@ export default {
             height: .72rem;
             width: .72rem;
             border-radius: 50%;
+            img{
+                width: 100%;
+            }
         }
         p{
             width: 1.8rem;
