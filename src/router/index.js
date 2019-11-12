@@ -76,7 +76,7 @@ const routes = [
     component: Feedback
   },
   {
-    path: '/amend',
+    path: '/amend/:userId',
     component: Amend
   },
   {

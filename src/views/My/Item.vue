@@ -19,6 +19,8 @@ export default {
         async amendClick(){
             let res=await Axios({url:'/api/token/validate',headers:{Authorization: localStorage.getItem('token')}})
             console.log(res.data);
+            let { id } = res.data
+            this.$router.push(`/amend/${id}`)
         }
     },
 }

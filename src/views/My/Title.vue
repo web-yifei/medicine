@@ -38,9 +38,10 @@ export default {
         .img{
             height: .72rem;
             width: .72rem;
-            border-radius: 50%;
+            
             img{
                 width: 100%;
+                border-radius: 50%;
             }
         }
         p{
