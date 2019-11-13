@@ -26,7 +26,6 @@ const routes = [
   },
   {
     path: '/classify',
-    // component: Classify,
     redirect: '/classifydetails/0'
   },
   {

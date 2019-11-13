@@ -37,6 +37,7 @@ export default {
       next('/login')
     }else{
       Axios({url:'/api/token/validate',headers:{Authorization: localStorage.getItem('token')}}).then(res => {
+          console.log(res.data)
         if(res.data.validate === 0) next('/login')
         next()
       })

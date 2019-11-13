@@ -14,9 +14,9 @@
   </div>
 </template>
 <script>
-import ClassifyBar from "../ClassifyBar";
+import ClassifyBar from "@/views/ClassifyBar";
 export default {
-    beforeMount () { 
+  beforeMount () { 
      this.$store.commit('hideTabbar')
   },
   beforeDestroy () { 
