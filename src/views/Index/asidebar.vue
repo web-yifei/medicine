@@ -80,6 +80,8 @@ export default {
     .icon{
       color: white;
       font-size: .22rem;
+      position: relative;
+      left: .13rem;
     }
 
 </style>
