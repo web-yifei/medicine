@@ -44,8 +44,8 @@
 </template>
 <script>
 import swiper from "@/components/swiper"; 
-import asidebar from '@/components/asidebar';
-import mainbar from '@/components/mainbar';
+import asidebar from '@/views/Index/asidebar';
+import mainbar from '@/views/Index/mainbar';
 import Axios from "axios";
 import { Indicator,Swipe, SwipeItem } from "mint-ui";
 
@@ -58,16 +58,6 @@ export default {
       looplist: [],
       swiperlist:[],
       name:"",
-      // loopoptions: {
-      //   loop: true,
-      //   autoplay: {
-      //     delay: 2500,
-      //     disableOnInteraction: false
-      //   },
-      //   pagination: {
-      //     el: ".swiper-pagination"
-      //   }
-      // },
       navoptions:{
         slidesPerView: 3,
         spaceBetween: 3,

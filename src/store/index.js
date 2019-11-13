@@ -8,7 +8,7 @@ export default new Vuex.Store({
     my_title:{
       headPic:'',
       headName:'',
-      Id:''
+      Id:'',
     },
     isTabbarShow:true
   },
@@ -25,6 +25,7 @@ export default new Vuex.Store({
       state.isTabbarShow = false
     },
   },
+
   actions: {
     async getMyInfoAction(store){
       const userid =await Axios({url:'/api/token/validate', headers:{Authorization: localStorage.getItem('token')}})
