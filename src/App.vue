@@ -1,6 +1,6 @@
 <template>
   <div>
-      <tabbar></tabbar>
+      <tabbar v-show="$store.state.isTabbarShow"></tabbar>
       <router-view></router-view>
   </div>
 </template>
@@ -10,7 +10,7 @@ import Axios from 'axios'
 import tabbar from '@/components/tabbar'
 Vue.component('tabbar', tabbar)
 export default {
-
+  
 }
 </script>
 <style lang="scss">
