@@ -104,12 +104,12 @@
       <main>
         <ul>
           <div>
-            <router-link to="" tag="li" @click="handleclick()">
+            <router-link to="/docdetail/:doctorId" tag="li" @click="handleclick()">
               <img src="" alt="" />
             </router-link>
             <span class="firstspan">儿科：何仙姑</span>
             <span>感冒、咳嗽</span>
-            <router-link to="" tag="span" @click="handleclick()">
+            <router-link to="/docdetail/:doctorId" tag="span" @click="handleclick()">
               <p>立即留言<i>》</i></p>
             </router-link>
           </div>
