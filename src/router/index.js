@@ -16,7 +16,7 @@ import Form from '@/views/Form'
 import Feedback from '@/views/Feedback'
 import Amend from '@/views/Amend'
 import Classifydetails from '@/views/children/Classifydetails'
-
+import ChangeHead from '@/views/My/ChangeHead'
 Vue.use(VueRouter)
 
 const routes = [
@@ -65,6 +65,10 @@ const routes = [
   {
     path: '/calc',
     component: Calc
+  },
+  {
+    path: '/changeHead',
+    component: ChangeHead
   },
   {
     path: '/doctors',

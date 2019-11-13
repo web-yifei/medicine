@@ -83,7 +83,8 @@
             width: 2.5rem;
             float: right;
             h4{
-                margin-bottom: .2rem;
+                margin-bottom: .1rem;
+                margin-top: .15rem;
             }
 
         }
