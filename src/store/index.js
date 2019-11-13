@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-<<<<<<< HEAD
+    isTabbarShow:true,
     my_title:{
       headPic:'',
       headName:'',
@@ -17,19 +17,23 @@ export default new Vuex.Store({
       state.my_title.headPic = params.pic
       state.my_title.headName = params.username
       state.my_title.Id = params.id
-    }
-=======
-    isTabbarShow:true
-  },
-  mutations: {
+    },
     showTabbar (state) {
       state.isTabbarShow = true
     },
     hideTabbar (state) {
       state.isTabbarShow = false
     },
->>>>>>> zdp
+    showTabbar (state) {
+      state.isTabbarShow = true
+    },
+    hideTabbar (state) {
+      state.isTabbarShow = false
+    },
+
+   
   },
+
   actions: {
     async getMyInfoAction(store){
       const userid =await Axios({url:'/api/token/validate', headers:{Authorization: localStorage.getItem('token')}})

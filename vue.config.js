@@ -17,6 +17,10 @@ module.exports = {
       "/ajax": {
         target: "http://m.maoyan.com",
         changeOrigin: true
+      },
+      "/mobile":{
+        target:"http://gateway.fangkuaiyi.com",
+        changeOrigin: true
       }
     }
   }
