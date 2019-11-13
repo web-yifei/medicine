@@ -6,25 +6,18 @@
     </div> -->
 
 <div><mt-header fixed title="问诊"></mt-header>
-  <!-- <swiper :options="options" :key="looplist.length">
-      <div class="swiper-slide" v-for="data in looplist" >
-        <!-- <img :src='data.imgUrl'/> -->
-        <!-- {{data}}
-      </div> -->
-
-  <!-- </swiper> --> -->
 </div>
 
 </template>
 <script>
-import swiper from '@/components/Swiper'
+// import swiper from '@/components/swiper'
 import { Header } from 'mint-ui';
 import Vue from 'vue'
 Vue.component(Header.name, Header);
 export default {
   data() {
     return {
-            
+
       looplist: [1,2,3],
       options: {
         // direction: 'vertical',
@@ -40,9 +33,9 @@ export default {
 
     }
   },
-  components:{
-    swiper,
-  },
+  // components:{
+  //   swiper,
+  // },
   methods: {
     handleClick () {
       this.router.push({ path: `/doctor/${doctorId}` })

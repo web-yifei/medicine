@@ -2,26 +2,28 @@
     <div class="login-form" :style="{height:indexHeight}">
         <h1>Login</h1>
         <div class="txtb">
-            <input type="text" ref="user" @focus="txtbFocusUser" @blur="txtBlurUser">
+            <input type="text" ref="user" @focus="txtbFocusUser" @blur="txtBlurUser" v-model="user">
             <span data-placeholder='Username'></span>
         </div>
         <div class="txtb">
-            <input type="password" ref="psw"  @focus="txtbFocusPsw" @blur="txtBlurPsw">
+            <input type="password" ref="psw"  @focus="txtbFocusPsw" @blur="txtBlurPsw" v-model="psw">
             <span data-placeholder="Password"></span>
         </div>
         <input type="submit" class="logbtn" value='Login' @click="submitClick">
         <div class="bottom-text">
-            Don't have account? <router-link to="/register">Sign up</router-link> 
+            Don't have account? <router-link to="/register">Sign up</router-link>
         </div>
     </div>
 </template>
 <script>
-import { Field } from 'mint-ui'
+import { MessageBox } from 'mint-ui'
 import Axios from 'axios'
 export default {
   data() {
     return {
-      indexHeight:'0'
+      indexHeight:'0',
+        user:'',
+        psw:''
     }
   },
   mounted() {
@@ -29,17 +31,18 @@ export default {
   },
   methods: {
     submitClick(){
-      let [username,psw] = [this.$refs.user.value, this.$refs.psw.value]
+        console.log(this.user,this.psw)
       Axios({
         url: '/api/login/validate',
         method: 'post',
         data: {
-          tel: username,
-          password: psw
+          tel: this.user,
+          password: this.psw
         }
       }).then(res => {
+          console.log(res)
         if(res.data.login === 0){
-          
+            MessageBox.alert('账号或密码不正确');
         }else{
           localStorage.setItem('token',res.data.token)
           this.$router.push('/my')
