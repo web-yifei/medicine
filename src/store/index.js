@@ -10,7 +10,7 @@ export default new Vuex.Store({
       headName:'',
       Id:'',
     },
-    isTabbarShow: true
+    isTabbarShow:true
   },
   mutations: {
     getMyInfo(state,params){

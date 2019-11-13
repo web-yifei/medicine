@@ -52,14 +52,17 @@ export default {
     },
     mounted() {
     this.indexHeight = document.documentElement.clientHeight - 50 + 'px'
-    
+
   },
   methods: {
       changeHandle(){
           if(this.newpsw !== this.newpsw2){
               MessageBox.alert('两次密码不一致');
+          }else{
+              Axios({url:'/api/users/edit',method:'post',data:{id:this.$route.params.userId,oldpsw:this.oldpsw,newpsw:this.newpsw}}).then(res => {
+                  console.log(res.data);
+              })
           }
-        Axios({url:'',method:'post',data:{id:this.$route.params.userId,}})
       },
     txtbFocusPsw() {
       this.$refs.psw.classList.add("focus");
