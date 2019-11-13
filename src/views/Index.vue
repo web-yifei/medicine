@@ -153,6 +153,8 @@ export default {
       img{
         width: 1rem;
         height: 1rem;
+        margin: 0 auto;
+        text-align: center;
 
       }
       span{
