@@ -22,56 +22,72 @@
     <aside>
       <ul>
         <div>
-          <router-link to="" tag="li">
-            <i class="iconfont icon-account icon"></i>
+          <router-link to="/doctors" tag="li">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-icon" style="color:darkred"></use>
+            </svg>
           </router-link>
           <span>内科</span>
         </div>
 
         <div>
-          <router-link to="" tag="li">
-            <i class="iconfont icon-account icon"></i>
+          <router-link to="/doctors" tag="li">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-haizi"></use>
+            </svg>
           </router-link>
           <span>儿科</span>
         </div>
 
         <div>
-          <router-link to="" tag="li">
-            <i class="iconfont icon-account icon"></i>
+          <router-link to="/doctors" tag="li">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-icon1" style="color:lightcoral"></use>
+            </svg>
           </router-link>
           <span>皮肤科</span>
         </div>
 
         <div>
-          <router-link to="" tag="li">
-            <i class="iconfont icon-account icon"></i>
+          <router-link to="/doctors" tag="li">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-fei"></use>
+            </svg>
           </router-link>
           <span>呼吸科</span>
         </div>
         <div>
-          <router-link to="" tag="li">
-            <i class="iconfont icon-account icon"></i>
+          <router-link to="/doctors" tag="li">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-kouqiang"></use>
+            </svg>
           </router-link>
           <span>口腔科</span>
         </div>
 
         <div>
-          <router-link to="" tag="li">
-            <i class="iconfont icon-account icon"></i>
+          <router-link to="/doctors" tag="li">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-shenjing"></use>
+            </svg>
           </router-link>
           <span>神经科</span>
         </div>
 
         <div>
-          <router-link to="" tag="li">
-            <i class="iconfont icon-account icon"></i>
+          <router-link to="/doctors" tag="li">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-xiaohua"></use>
+            </svg>
           </router-link>
           <span>消化科</span>
         </div>
 
         <div>
-          <router-link to="" tag="li">
-            <i class="iconfont icon-account icon"></i>
+          <router-link to="/doctors" tag="li">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-xinxieguan"></use>
+            </svg>
           </router-link>
           <span>心血管科</span>
         </div>
@@ -111,7 +127,7 @@
         </div>
         <div>
           <router-link to="" tag="li" @click="handleclick()">
-            <img src="" alt="">
+            <img src="" alt="" />
           </router-link>
           <span class="firstspan">儿科：何仙姑</span>
           <span>感冒、咳嗽</span>
@@ -185,11 +201,15 @@ aside {
         padding-top: 0.05rem;
         margin: 0 auto;
         border: 1px solid #bbbbbb;
-        i {
-          display: block;
-          height: 0.3rem;
-          line-height: 0.3rem;
-          margin-top: 0.05rem;
+        svg {
+          
+          use {
+            display: block;
+            height: 0.3rem;
+            line-height: 0.3rem;
+            margin-top: 0.05rem;
+            
+          }
         }
       }
     }
@@ -204,7 +224,7 @@ aside {
 }
 .icon {
   color: #bbbbbb;
-  font-size: 0.22rem;
+  font-size: 0.35rem;
 }
 .line {
   left: 11px;
@@ -250,7 +270,7 @@ main {
       line-height: 20px;
       text-align: center;
       border: 1px solid rgba(187, 187, 187, 1);
-      margin: 0 .05rem 0 0;
+      margin: 0 0.05rem 0 0;
       li {
         width: 100%;
         img {
@@ -258,26 +278,25 @@ main {
           width: 100%;
           height: 0.8rem;
           background: lightblue;
-
         }
       }
 
       span {
         display: block;
-        margin: .02rem 0;
-        p{
+        margin: 0.02rem 0;
+        p {
           color: #101010;
-          font-size: .12rem;
+          font-size: 0.12rem;
           display: inline;
         }
-        i{
+        i {
           display: inline;
-          color: #FF9800 ;
+          color: #ff9800;
         }
       }
-     .firstspan{
-       margin-top: .2rem;
-     }
+      .firstspan {
+        margin-top: 0.2rem;
+      }
     }
   }
 }

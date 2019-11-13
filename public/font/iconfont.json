@@ -1,0 +1,65 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "786217",
+      "name": "内科",
+      "font_class": "icon",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "848479",
+      "name": "皮肤科",
+      "font_class": "icon1",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "8288985",
+      "name": "肺",
+      "font_class": "fei",
+      "unicode": "e867",
+      "unicode_decimal": 59495
+    },
+    {
+      "icon_id": "8288987",
+      "name": "孩子",
+      "font_class": "haizi",
+      "unicode": "e868",
+      "unicode_decimal": 59496
+    },
+    {
+      "icon_id": "8289000",
+      "name": "口腔",
+      "font_class": "kouqiang",
+      "unicode": "e86b",
+      "unicode_decimal": 59499
+    },
+    {
+      "icon_id": "8289019",
+      "name": "神经",
+      "font_class": "shenjing",
+      "unicode": "e86e",
+      "unicode_decimal": 59502
+    },
+    {
+      "icon_id": "8289029",
+      "name": "消化",
+      "font_class": "xiaohua",
+      "unicode": "e870",
+      "unicode_decimal": 59504
+    },
+    {
+      "icon_id": "8289034",
+      "name": "心血管",
+      "font_class": "xinxieguan",
+      "unicode": "e871",
+      "unicode_decimal": 59505
+    }
+  ]
+}
