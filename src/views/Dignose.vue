@@ -105,12 +105,8 @@
       <ul>
         <div>
           <router-link to="" tag="li" @click="handleclick()">
-<<<<<<< HEAD
-            <img src="" alt="" />
-=======
             <img src="" alt="">
 
->>>>>>> ad731658a648d003a02fd9df376921fd7eee7b2a
           </router-link>
           <span class="firstspan">儿科：何仙姑</span>
           <span>感冒、咳嗽</span>
@@ -120,12 +116,8 @@
         </div>
         <div>
           <router-link to="" tag="li" @click="handleclick()">
-<<<<<<< HEAD
-            <img src="" alt="" />
-=======
             <img src="" alt="">
 
->>>>>>> ad731658a648d003a02fd9df376921fd7eee7b2a
           </router-link>
           <span class="firstspan">儿科：何仙姑</span>
           <span>感冒、咳嗽</span>
@@ -267,13 +259,8 @@ main {
   ul {
     display: flex;
 
-<<<<<<< HEAD
-    div:first-child {
-      margin-left: 0.05rem;
-=======
     div:first-child{
       margin-left:.05rem;
->>>>>>> ad731658a648d003a02fd9df376921fd7eee7b2a
     }
 
     div {
@@ -291,10 +278,6 @@ main {
           width: 100%;
           height: 0.8rem;
           background: lightblue;
-<<<<<<< HEAD
-=======
-
->>>>>>> ad731658a648d003a02fd9df376921fd7eee7b2a
         }
       }
 
