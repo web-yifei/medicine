@@ -5,7 +5,6 @@
 </template>
 <script>
 export default {
-  
   data() {
     return {
       currentIndex:0,
@@ -15,12 +14,17 @@ export default {
   methods: {
     ClassifyClick(index) {
       console.log("---");
-      if(!index && index !== 0){
-        this.$router.push(`/classifydetails/${index}`);
-      }
+      if(this.currentIndex!== index){
+        // console.log(this.currentIndex)
+         this.$router.push(`/classifydetails/${index}`);
+       }else{
+
+       }
+     
        this.currentIndex = index;
     }
-  }
+  },
+  
 };
 </script>
 
@@ -30,7 +34,7 @@ ul {
   top: 0.5rem;
 }
 li {
-  background: red;
+  background: white;
   width: 1.1rem;
   height: 0.52rem;
   border: 1px solid #ffffff;
@@ -38,6 +42,6 @@ li {
   line-height: 0.52rem;
 }
 .active{
-    background: white;
+    background: red;
   }
 </style>
