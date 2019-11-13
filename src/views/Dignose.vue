@@ -105,7 +105,8 @@
       <ul>
         <div>
           <router-link to="" tag="li" @click="handleclick()">
-            <img src="" alt="" />
+            <img src="" alt="">
+
           </router-link>
           <span class="firstspan">儿科：何仙姑</span>
           <span>感冒、咳嗽</span>
@@ -115,7 +116,8 @@
         </div>
         <div>
           <router-link to="" tag="li" @click="handleclick()">
-            <img src="" alt="" />
+            <img src="" alt="">
+
           </router-link>
           <span class="firstspan">儿科：何仙姑</span>
           <span>感冒、咳嗽</span>
@@ -257,8 +259,8 @@ main {
   ul {
     display: flex;
 
-    div:first-child {
-      margin-left: 0.05rem;
+    div:first-child{
+      margin-left:.05rem;
     }
 
     div {

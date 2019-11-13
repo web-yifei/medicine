@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Index from '@/views/Index'
-import Classify from '@/views/Classify'
+// import Classify from '@/views/Classify'
 import Dignose from '@/views/Dignose'
 import My from '@/views/My'
 import Login from '@/views/Login'
