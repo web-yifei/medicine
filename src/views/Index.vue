@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="top">
-      
+
       <router-link to="/city" tag="li" class="city ">
           <i class="iconfont icon-compass"></i>
           <span>{{name}}</span>
       </router-link>
       <mt-search  placeholder="输入你想搜索的关键字">
-      
+
       </mt-search>
-   
+
       <router-link to="/city" tag="li" class="city ">
           <i class="iconfont icon-comments"></i>
           <span>消息</span>
@@ -30,8 +30,8 @@
     </div>
 
     <asidebar></asidebar>
- 
-    <h3>今日推荐</h3>
+
+    <h3> <span>今日推荐</span></h3>
     <swiper :options="navoptions" v-if="swiperlist.length">
            <div class="swiper-slide nav" v-for="(data,index) in swiperlist" :key="index">
                 <img :src="data.icon">
@@ -43,7 +43,7 @@
   </div>
 </template>
 <script>
-import swiper from "@/components/swiper"; 
+import swiper from "@/components/swiper";
 import asidebar from '@/views/Index/asidebar';
 import mainbar from '@/views/Index/mainbar';
 import Axios from "axios";
@@ -97,14 +97,14 @@ export default {
       var a = localStorage.getItem("name");
       console.log(a);
       this.name = a;
-      
+
     });
 
     Axios({
       url:'/front/handle/control.do',
       method:'post',
       data:{
-        biz_module: "breedService", biz_method: "hotDrugPropertiesInfo", 
+        biz_module: "breedService", biz_method: "hotDrugPropertiesInfo",
         biz_param: {pn: 1, pSize: 10},
         biz_method: "hotDrugPropertiesInfo",
         biz_module: "breedService",
@@ -201,4 +201,15 @@ export default {
        display:flex;
 
     }
+  h3{
+    height: .4rem;
+    line-height: .4rem;
+    span {
+      border-left: .03rem solid #2b669a;
+      margin-left: .15rem;
+      box-sizing: border-box;
+      width: 50%;
+      padding-left: .06rem;
+    }
+  }
 </style>

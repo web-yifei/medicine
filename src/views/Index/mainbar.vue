@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>养生贴士</h3>
+        <h3> <span>养生贴士</span> <span class="more">更多></span></h3>
         <dl>
             <dd>
                 <img src="" alt="">
@@ -43,6 +43,29 @@
     </div>
 </template>
 <style lang="scss" scoped>
+  div{
+    margin-top: .2rem;
+    border-top: 0.05rem solid #dedede;
+  }
+  h3{
+    height: .4rem;
+    line-height: .4rem;
+    span {
+      border-left: .03rem solid #2b669a;
+      margin-left: .15rem;
+      box-sizing: border-box;
+      width: 50%;
+      padding-left: .06rem;
+    }
+    .more{
+      border: none;
+      font-size: .13rem;
+      color: #c0a322;
+      float: right;
+      width: .5rem;
+      margin-right: .1rem;
+    }
+  }
     dl{
         height:1rem;
         width: 100%;
@@ -62,7 +85,7 @@
             h4{
                 margin-bottom: .2rem;
             }
-           
+
         }
     }
     .last{

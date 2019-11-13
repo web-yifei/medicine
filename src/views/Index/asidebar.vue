@@ -33,12 +33,12 @@
 </template>
 <script>
 export default {
-    
+
 }
 </script>
 <style lang="scss" scoped>
     aside{
-        border-bottom: 3px solid #ccc;
+        border-bottom: .05rem solid #dedede;
         width: 100%;
         height: .8rem;
         background: white;
@@ -63,7 +63,7 @@ export default {
                     height: .3rem;
                     line-height: .3rem;
                     margin-top: .05rem;
-                   
+
                 }
                 }
             }
@@ -74,12 +74,12 @@ export default {
               text-align: center;
               font-size: .12rem;
             }
-             
+
         }
     }
     .icon{
       color: white;
       font-size: .22rem;
     }
- 
+
 </style>

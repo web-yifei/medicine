@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Index from '@/views/Index'
-import Classify from '@/views/Classify'
+// import Classify from '@/views/Classify'
 import Dignose from '@/views/Dignose'
 import My from '@/views/My'
 import Login from '@/views/Login'
@@ -15,7 +15,7 @@ import Docdetail from '@/views/Docdetail'
 import Form from '@/views/Form'
 import Feedback from '@/views/Feedback'
 import Amend from '@/views/Amend'
-import Classifydetails from '@/views/Children/Classifydetails'
+import Classifydetails from '@/views/children/Classifydetails'
 
 Vue.use(VueRouter)
 
