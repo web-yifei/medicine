@@ -17,6 +17,7 @@
   
 </template>
 <script>
+<<<<<<< HEAD
 import { Header } from "mint-ui";
 import ClassifyBar from "../ClassifyBar";
 import Axios from "axios";
@@ -26,6 +27,12 @@ export default {
   //  },
   beforeMount() {
     this.$store.commit("hideTabbar");
+=======
+import ClassifyBar from "@/views/ClassifyBar";
+export default {
+  beforeMount () { 
+     this.$store.commit('hideTabbar')
+>>>>>>> 1aa31052cb6c7d9b74305dcfe8afed6b0fefb38c
   },
   beforeDestroy() {
     this.$store.commit("showTabbar");
@@ -66,11 +73,18 @@ h3 {
   line-height: 0.48rem;
 }
 li {
+<<<<<<< HEAD
   height: 0.8rem;
   //   width: 0.39rem;
   margin-left: 0.1rem;
   margin-right: 0.1rem;
   float: left;
+=======
+    height: 0.8rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    float: left;
+>>>>>>> 1aa31052cb6c7d9b74305dcfe8afed6b0fefb38c
 }
 img {
   width: 0.5rem;

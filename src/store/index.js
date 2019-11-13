@@ -5,12 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+<<<<<<< HEAD
     isTabbarShow:true,
+=======
+>>>>>>> 1aa31052cb6c7d9b74305dcfe8afed6b0fefb38c
     my_title:{
       headPic:'',
       headName:'',
-      Id:''
+      Id:'',
     },
+    isTabbarShow:true
   },
   mutations: {
     getMyInfo(state,params){
@@ -18,20 +22,26 @@ export default new Vuex.Store({
       state.my_title.headName = params.username
       state.my_title.Id = params.id
     },
+<<<<<<< HEAD
     showTabbar (state) {
       state.isTabbarShow = true
     },
     hideTabbar (state) {
       state.isTabbarShow = false
     },
+=======
+>>>>>>> 1aa31052cb6c7d9b74305dcfe8afed6b0fefb38c
     showTabbar (state) {
       state.isTabbarShow = true
     },
     hideTabbar (state) {
       state.isTabbarShow = false
     },
+<<<<<<< HEAD
 
    
+=======
+>>>>>>> 1aa31052cb6c7d9b74305dcfe8afed6b0fefb38c
   },
 
   actions: {
