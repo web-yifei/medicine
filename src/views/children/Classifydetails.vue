@@ -59,10 +59,9 @@ h3 {
 }
 li {
     height: 0.8rem;
-//   width: 0.39rem;
-  margin-left: 0.1rem;
-  margin-right: 0.1rem;
-  float: left;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    float: left;
 }
 img {
   width: 0.5rem;
