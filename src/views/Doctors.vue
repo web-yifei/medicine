@@ -1,8 +1,9 @@
 <template>
     <div>
-        医生列表
+        <!-- 医生列表
          <button @click="handleClick">doctor_img</button>
-         <button @click="handleClick2">返回</button>
+         <button @click="handleClick2">返回</button> -->
+         
     </div>
 </template>
 <script>
