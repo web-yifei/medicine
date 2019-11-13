@@ -15,6 +15,7 @@ import Docdetail from '@/views/Docdetail'
 import Form from '@/views/Form'
 import Feedback from '@/views/Feedback'
 import Amend from '@/views/Amend'
+import Classifydetails from '@/views/children/Classifydetails'
 
 Vue.use(VueRouter)
 
@@ -25,8 +26,15 @@ const routes = [
   },
   {
     path: '/classify',
-    component: Classify
+    // component: Classify,
+    redirect: '/classifydetails/0'
   },
+  {
+    name: 'classifydetails',
+    path: '/classifydetails/:myid',
+    component: Classifydetails
+  },
+
   {
     path: '/message',
     component: Dignose
