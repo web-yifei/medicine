@@ -1,60 +1,105 @@
 <template>
-    <div>
-        表单111
+    <div class="body">
+        <mt-header fixed title="问诊表">
 
-        <button>提交</button>
+                <mt-button icon="back" slot="left" @click="handleClick"></mt-button>
+        </mt-header>
+  
+         <div class="head">
+            <div class="img">
+                <img :src="'http://localhost:3000'+$store.state.my_title.headPic" alt="">
+            </div>
+            <div class="intro">
+                <p>陈亦霏</p>
+                <div> <span>职业中医师</span> <span>疑难病儿科</span></div>
+            </div>
+        </div>
+
+        <el-form :label-position="labelPosition" label-width="80px" :model="form">
+          <el-form-item label="姓名:" >
+            <el-input v-model="form.name" placeholder="请输入姓名"></el-input>
+          </el-form-item>
+
+          <el-form-item label="年龄:" >
+            <el-input v-model="form.age" placeholder="请输入年龄"></el-input>
+          </el-form-item>
+
+          <el-form-item label="性别:">
+            <el-radio-group v-model="form.sex" >
+              <el-radio label="男"></el-radio>
+              <el-radio label="女"></el-radio>
+            </el-radio-group>
+          </el-form-item>
+
+          <el-form-item label="病史:">
+            <el-input type="textarea" v-model="form.history" placeholder="病历"></el-input>
+          </el-form-item>
+
+          <el-form-item label="寒热:" >
+            <el-input v-model="form.feel" placeholder="是否感觉冷热"></el-input>
+          </el-form-item>
+
+          <el-form-item label="出汗情况:" >
+            <el-input v-model="form.perspire" placeholder="昼夜出汗情况"></el-input>
+          </el-form-item>
+
+          <el-form-item label="疼痛部位:">
+            <el-input type="textarea" v-model="form.hurt" placeholder="疼痛部位及部位的其他症状"></el-input>
+          </el-form-item>
+
+          <el-form-item label="二便:">
+            <el-input type="textarea" v-model="form.shit" placeholder="大小便排便情况"></el-input>
+          </el-form-item>
+
+           <el-form-item label="烟酒情况:">
+            <el-checkbox-group v-model="form.smoke">
+              <el-checkbox label="饮酒" smoke="type"></el-checkbox>
+              <el-checkbox label="吸烟" smoke="type"></el-checkbox>
+              <el-checkbox label="二者都不" smoke="type"></el-checkbox>
+              <el-checkbox label="二者都有" smoke="type"></el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+
+          <el-form-item label="饮食习惯:">
+            <el-input type="textarea" v-model="form.habit" placeholder="喜好的饮食，厌恶的饮食"></el-input>
+          </el-form-item>
+
+          <el-form-item label="是否胸闷:">
+            <el-radio-group v-model="form.chest" >
+              <el-radio label="是"></el-radio>
+              <el-radio label="否"></el-radio>
+            </el-radio-group>
+          </el-form-item>
+      </el-form>
+        <button class="commit">提交</button>
+   
     </div>
 
-    <!-- <el-form ref="form" :model="form" label-width="80px">
-  <el-form-item label="活动名称">
-    <el-input v-model="form.name"></el-input>
-  </el-form-item>
-  <el-form-item label="活动区域">
-    <el-select v-model="form.region" placeholder="请选择活动区域">
-      <el-option label="区域一" value="shanghai"></el-option>
-      <el-option label="区域二" value="beijing"></el-option>
-    </el-select>
-  </el-form-item>
-  <el-form-item label="活动时间">
-    <el-col :span="11">
-      <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
-    </el-col>
-    <el-col class="line" :span="2">-</el-col>
-    <el-col :span="11">
-      <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
-    </el-col>
-  </el-form-item>
-  <el-form-item label="即时配送">
-    <el-switch v-model="form.delivery"></el-switch>
-  </el-form-item>
-  <el-form-item label="活动性质">
-    <el-checkbox-group v-model="form.type">
-      <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-      <el-checkbox label="地推活动" name="type"></el-checkbox>
-      <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-      <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
-    </el-checkbox-group>
-  </el-form-item>
-  <el-form-item label="特殊资源">
-    <el-radio-group v-model="form.resource">
-      <el-radio label="线上品牌商赞助"></el-radio>
-      <el-radio label="线下场地免费"></el-radio>
-    </el-radio-group>
-  </el-form-item>
-  <el-form-item label="活动形式">
-    <el-input type="textarea" v-model="form.desc"></el-input>
-  </el-form-item>
-  <el-form-item>
-    <el-button type="primary" @click="onSubmit">立即创建</el-button>
-    <el-button>取消</el-button>
-  </el-form-item>
-</el-form> -->
+ 
 </template>
 <script>
 export default {
+  data() {
+      return {
+       labelPosition: 'right',
+        form: {
+          name: '',
+          age: '',
+          sex:'',
+          history:'',
+          feel:'',
+          perspire:'',
+          hurt:"",
+          shit:"",
+          smoke:[],
+          habit:"",
+          chest:"",
+        }
+      }
+    },
   methods: {
     handleClick () {
-      this.router.go(-1)
+      this.router.back();
     },
      
   },
@@ -66,9 +111,11 @@ export default {
   },
 }
 </script>
-<style lang="scss" scoped>
-  div{
-    button{
+<style lang="scss">
+  .body{
+     background: #fff;
+      position: relative;
+    .commit{
       width: 100%;
       height: .5rem;
       background:rgb(236, 84, 89);
@@ -79,6 +126,72 @@ export default {
       left: 0;
       border-radius: .1rem;
       color: white;
+      font-size: .16rem;
+    }
+    div.head{
+        height: .9rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        border-bottom: .01rem solid #ccc;
+        margin-top: .4rem;
+        .img{
+            height: .72rem;
+            width: .72rem;
+            img{
+                width: 100%;
+                border-radius: 50%;
+            }
+        }
+        .intro{
+            justify-self: flex-start;
+            display: flex;
+            flex-direction: column;
+            margin-left: -1rem;
+            p{
+            width: 1.8rem;
+            align-self: flex-start;
+            }
+            div{
+                display: flex;
+                span{
+                    flex: 1
+                }
+            }
+        }
+    }
+     .mint-header{
+        background: white;
+        color: black;
+        border-bottom: 1px solid #ccc;
+    }
+    form{
+      width: 90%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin: 0 auto;
+      margin-top: .1rem;
+      margin-bottom: .6rem;
+        /deep/.el-form-item__label{
+          padding: 0;
+          text-align: center;
+        }
+        /deep/.el-form-item{
+          margin-bottom:.15rem;
+        }
+        /deep/.el-input__inner{
+          height: .25rem;
+          line-height: .25rem;
+          width: 90%;
+        }
+        /deep/.el-textarea__inner{
+            width:90%;
+            height: 1rem;
+        }
+        /deep/.el-checkbox__inner{
+          position: static;
+        }
     }
   }
+  
 </style>

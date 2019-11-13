@@ -15,6 +15,8 @@ import Docdetail from '@/views/Docdetail'
 import Form from '@/views/Form'
 import Feedback from '@/views/Feedback'
 import Amend from '@/views/Amend'
+import CalcSuccess from '@/views/CalcSuccess'
+import SubmitSuccess from "@/views/SubmitSuccess"
 import Classifydetails from '@/views/children/Classifydetails'
 
 Vue.use(VueRouter)
@@ -85,6 +87,14 @@ const routes = [
   {
     path: '/amend/:userId',
     component: Amend
+  },
+  {
+    path:'/calcsuccess',
+    component:CalcSuccess
+  },
+  {
+    path:'/submitSuccess',
+    component:SubmitSuccess
   },
   {
     path: '*',

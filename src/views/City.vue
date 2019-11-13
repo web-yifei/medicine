@@ -18,7 +18,7 @@
 </template>
 <script>
 import Axios from 'axios'
-import Header from '@/components/Header'
+// import Header from '@/components/Header'
 export default {
     data(){
         return{
