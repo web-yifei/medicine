@@ -6,16 +6,18 @@ module.exports = {
       errors: false
     },
     proxy: {
-    '/front': {
-        target: 'http://apps.yaocaimaimai.com',
+      "/front": {
+        target: "http://apps.yaocaimaimai.com",
         changeOrigin: true
-       },
-    '/api': {
-      target: 'http://localhost:3000',
-      changeOrigin: true
+      },
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true
+      },
+      "/ajax": {
+        target: "http://m.maoyan.com",
+        changeOrigin: true
+      }
     }
-    },
-   
-  },
-
-}
+  }
+};

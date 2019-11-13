@@ -1,6 +1,6 @@
 <template>
   <div>
-      <tabbar></tabbar>
+      <tabbar v-show="$store.state.isTabbarShow"></tabbar>
       <router-view></router-view>
   </div>
 </template>
@@ -10,7 +10,7 @@ import Axios from 'axios'
 import tabbar from '@/components/tabbar'
 Vue.component('tabbar', tabbar)
 export default {
-
+  
 }
 </script>
 <style lang="scss">
@@ -50,4 +50,13 @@ html{
   .iconfont{
     font-size: .16rem;
   }
+  .mint-search{
+    margin: 0 auto;
+    flex: 70%;
+  }
+  .mint-searchbar{
+      padding:3px 4px !important;
+      border-radius:.06rem;
+      top: .07rem;
+    }
 </style>

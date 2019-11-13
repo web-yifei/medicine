@@ -1,26 +1,41 @@
 <template>
   <div>
     <div class="top">
-      <!-- <router-link to="/city">
-        <button>城市</button>
-      </router-link> -->
-      <mt-search  cancel-text="取消" placeholder="输入你想搜索的关键字">
-        
+      
+      <router-link to="/city" tag="li" class="city ">
+          <i class="iconfont icon-compass"></i>
+          <span>{{name}}</span>
+      </router-link>
+      <mt-search  placeholder="输入你想搜索的关键字">
+      
       </mt-search>
+   
+      <router-link to="/city" tag="li" class="city ">
+          <i class="iconfont icon-comments"></i>
+          <span>消息</span>
+      </router-link>
     </div>
-    
-    <swiper :options="loopoptions" v-if="looplist.length" style="margin-top: .5rem;" >
-      <div class="swiper-slide" v-for="data in looplist" :key="data.id">
-        <img :src="data.appImg" />
-      </div>
-    </swiper>
-    
+    <div v-if='looplist.length'>
+    <!-- <mt-swipe :auto="4000" v-if="looplist.length" :prevent='true'>
+      <mt-swipe-item v-for="data in looplist" :key="data.id">
+          <img :src="data.appImg" alt="">
+      </mt-swipe-item>
+    </mt-swipe> -->
+    <mt-swipe :auto="4000" :prevent='true'>
+      <mt-swipe-item v-for="data in looplist" :key="data.id">
+        <img :src="data.appImg" alt="">
+      </mt-swipe-item>
+
+    </mt-swipe>
+    </div>
+
     <asidebar></asidebar>
  
     <h3>今日推荐</h3>
     <swiper :options="navoptions" v-if="swiperlist.length">
            <div class="swiper-slide nav" v-for="(data,index) in swiperlist" :key="index">
                 <img :src="data.icon">
+                <span>{{data.name}}</span>
           </div>
     </swiper>
 
@@ -28,33 +43,31 @@
   </div>
 </template>
 <script>
-import swiper from "@/components/swiper";
+import swiper from "@/components/swiper"; 
 import asidebar from '@/components/asidebar';
 import mainbar from '@/components/mainbar';
 import Axios from "axios";
-// import { Indicator } from "mint-ui";
-import { Search } from "mint-ui";
-import Vue from 'vue';
-import { Tabbar, TabItem } from 'mint-ui';
+import { Indicator,Swipe, SwipeItem } from "mint-ui";
 
-Vue.component(Tabbar.name, Tabbar);
-Vue.component(TabItem.name, TabItem);
-Vue.component(Search.name, Search);
+import Vue from 'vue';
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
 export default {
   data() {
     return {
       looplist: [],
       swiperlist:[],
-      loopoptions: {
-        loop: true,
-        autoplay: {
-          delay: 2500,
-          disableOnInteraction: false
-        },
-        pagination: {
-          el: ".swiper-pagination"
-        }
-      },
+      name:"",
+      // loopoptions: {
+      //   loop: true,
+      //   autoplay: {
+      //     delay: 2500,
+      //     disableOnInteraction: false
+      //   },
+      //   pagination: {
+      //     el: ".swiper-pagination"
+      //   }
+      // },
       navoptions:{
         slidesPerView: 3,
         spaceBetween: 3,
@@ -68,6 +81,10 @@ export default {
     mainbar,
   },
   mounted() {
+     Indicator.open({
+        text: '加载中...',
+        spinnerType: 'fading-circle',
+      });
     Axios({
       url: "/front/handle/control.do",
       method: "post",
@@ -86,6 +103,11 @@ export default {
       // console.log(res.data.biz_result)
       this.looplist = res.data.biz_result.list;
       console.log(this.looplist);
+      Indicator.close();
+      var a = localStorage.getItem("name");
+      console.log(a);
+      this.name = a;
+      
     });
 
     Axios({
@@ -143,5 +165,50 @@ export default {
         height: 1rem;
 
       }
+      span{
+        width: 1rem;
+        height: .25rem;
+        background: rgba($color: #000000, $alpha: .5);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        color: white;
+      }
+    }
+    .mint-swipe{
+      height: 2rem;
+      margin-top: .5rem;
+    }
+    .mint-swipe-indicator.is-active{
+      background: skyblue;
+    }
+    .city{
+      width: .3rem;
+      height: .5rem;
+      flex: 10%;
+      color: white;
+      font-size: .12rem;
+      display: flex;
+      flex-direction: column;
+      i{
+        display: block;
+        width: .3rem;
+        height: .2rem;
+        line-height: .2rem;
+        margin: 0 auto;
+        margin-top: .1rem;
+      }
+      span{
+        display: block;
+        height: .2rem;
+        line-height: .2rem;
+        text-align: center;
+      }
+    }
+    .top{
+       background: rgb(192, 163, 34);
+       display:flex;
+
     }
 </style>
