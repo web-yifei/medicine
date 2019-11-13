@@ -1,4 +1,3 @@
-
 <template>
   <!-- <div>
         问诊
@@ -6,137 +5,137 @@
          <button @click="handleClick">doctor_img</button>
     </div> -->
   <div>
-    <mt-header fixed title="问诊"></mt-header>
-    <swiper
-      :options="options"
-      v-if="looplist.length"
-      style="margin-top: .5rem;height: 1.69rem;
+    
+      <mt-header fixed title="问诊"></mt-header>
+      <swiper
+        :options="options"
+        v-if="looplist.length"
+        style="margin-top: .5rem;height: 1.69rem;
     width: 100%; background:pink;"
-    >
-      <div class="swiper-slide" v-for="data in looplist" :key="data.id">
-        <!-- <img :src="data.appImg" /> -->
-        {{ data }}
+      >
+        <div class="swiper-slide" v-for="data in looplist" :key="data.id">
+          <!-- <img :src="data.appImg" /> -->
+          {{ data }}
+        </div>
+      </swiper>
+
+      <aside>
+        <ul>
+          <div>
+            <router-link to="/doctors" tag="li">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-icon" style="color:darkred"></use>
+              </svg>
+            </router-link>
+            <span>男科</span>
+          </div>
+          <div>
+            <router-link to="/doctors" tag="li">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-yunfu"></use>
+              </svg>
+            </router-link>
+            <span>妇科</span>
+          </div>
+
+          <div>
+            <router-link to="/doctors" tag="li">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-haizi"></use>
+              </svg>
+            </router-link>
+            <span>儿科</span>
+          </div>
+
+          <div>
+            <router-link to="/doctors" tag="li">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-icon1" style="color:lightcoral"></use>
+              </svg>
+            </router-link>
+            <span>皮肤科</span>
+          </div>
+
+          <div>
+            <router-link to="/doctors" tag="li">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-fei"></use>
+              </svg>
+            </router-link>
+            <span>呼吸科</span>
+          </div>
+
+          <div>
+            <router-link to="/doctors" tag="li">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-shenjing"></use>
+              </svg>
+            </router-link>
+            <span>内分泌科</span>
+          </div>
+
+          <div>
+            <router-link to="/doctors" tag="li">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-xiaohua"></use>
+              </svg>
+            </router-link>
+            <span>消化科</span>
+          </div>
+
+          <div>
+            <router-link to="/doctors" tag="li">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-xinxieguan"></use>
+              </svg>
+            </router-link>
+            <span>心血管科</span>
+          </div>
+        </ul>
+      </aside>
+
+      <div class="line"></div>
+
+      <div class="recommend">
+        <span></span>
+        推荐医生
+        <span></span>
       </div>
-    </swiper>
-
-    <aside>
-      <ul>
-        <div>
-          <router-link to="/doctors" tag="li">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-icon" style="color:darkred"></use>
-            </svg>
-          </router-link>
-          <span>内科</span>
-        </div>
-
-        <div>
-          <router-link to="/doctors" tag="li">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-haizi"></use>
-            </svg>
-          </router-link>
-          <span>儿科</span>
-        </div>
-
-        <div>
-          <router-link to="/doctors" tag="li">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-icon1" style="color:lightcoral"></use>
-            </svg>
-          </router-link>
-          <span>皮肤科</span>
-        </div>
-
-        <div>
-          <router-link to="/doctors" tag="li">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-fei"></use>
-            </svg>
-          </router-link>
-          <span>呼吸科</span>
-        </div>
-        <div>
-          <router-link to="/doctors" tag="li">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-kouqiang"></use>
-            </svg>
-          </router-link>
-          <span>口腔科</span>
-        </div>
-
-        <div>
-          <router-link to="/doctors" tag="li">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-shenjing"></use>
-            </svg>
-          </router-link>
-          <span>神经科</span>
-        </div>
-
-        <div>
-          <router-link to="/doctors" tag="li">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-xiaohua"></use>
-            </svg>
-          </router-link>
-          <span>消化科</span>
-        </div>
-
-        <div>
-          <router-link to="/doctors" tag="li">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-xinxieguan"></use>
-            </svg>
-          </router-link>
-          <span>心血管科</span>
-        </div>
-      </ul>
-    </aside>
-
-    <div class="line"></div>
-
-    <div class="recommend">
-      <span></span>
-      推荐医生
-      <span></span>
-    </div>
-    <main>
-      <ul>
-        <div>
-          <router-link to="" tag="li" @click="handleclick()">
-            <img src="" alt="">
-
-          </router-link>
-          <span class="firstspan">儿科：何仙姑</span>
-          <span>感冒、咳嗽</span>
-          <router-link to="" tag="span" @click="handleclick()">
-            <p>立即留言<i>》</i></p>
-          </router-link>
-        </div>
-        <div>
-          <router-link to="" tag="li" @click="handleclick()">
-            <img src="" alt="">
-
-          </router-link>
-          <span class="firstspan">儿科：何仙姑</span>
-          <span>感冒、咳嗽</span>
-          <router-link to="" tag="span" @click="handleclick()">
-            <p>立即留言<i>》</i></p>
-          </router-link>
-        </div>
-        <div>
-          <router-link to="" tag="li" @click="handleclick()">
-            <img src="" alt="" />
-          </router-link>
-          <span class="firstspan">儿科：何仙姑</span>
-          <span>感冒、咳嗽</span>
-          <router-link to="" tag="span" @click="handleclick()">
-            <p>立即留言<i>》</i></p>
-          </router-link>
-        </div>
-      </ul>
-    </main>
+      <main>
+        <ul>
+          <div>
+            <router-link to="/docdetail/:doctorId" tag="li" @click="handleclick()">
+              <img src="" alt="" />
+            </router-link>
+            <span class="firstspan">儿科：何仙姑</span>
+            <span>感冒、咳嗽</span>
+            <router-link to="/docdetail/:doctorId" tag="span" @click="handleclick()">
+              <p>立即留言<i>》</i></p>
+            </router-link>
+          </div>
+          <div>
+            <router-link to="" tag="li" @click="handleclick()">
+              <img src="" alt="" />
+            </router-link>
+            <span class="firstspan">儿科：何仙姑</span>
+            <span>感冒、咳嗽</span>
+            <router-link to="" tag="span" @click="handleclick()">
+              <p>立即留言<i>》</i></p>
+            </router-link>
+          </div>
+          <div>
+            <router-link to="" tag="li" @click="handleclick()">
+              <img src="" alt="" />
+            </router-link>
+            <span class="firstspan">儿科：何仙姑</span>
+            <span>感冒、咳嗽</span>
+            <router-link to="" tag="span" @click="handleclick()">
+              <p>立即留言<i>》</i></p>
+            </router-link>
+          </div>
+        </ul>
+      </main>
+    
   </div>
 </template>
 <script>
@@ -202,13 +201,11 @@ aside {
         margin: 0 auto;
         border: 1px solid #bbbbbb;
         svg {
-          
           use {
             display: block;
             height: 0.3rem;
             line-height: 0.3rem;
             margin-top: 0.05rem;
-            
           }
         }
       }
@@ -256,11 +253,12 @@ aside {
 main {
   width: 100%;
   height: 1.75rem;
+ 
   ul {
     display: flex;
 
-    div:first-child{
-      margin-left:.05rem;
+    div:first-child {
+      margin-left: 0.05rem;
     }
 
     div {

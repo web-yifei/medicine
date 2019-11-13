@@ -1,42 +1,57 @@
 <template>
   <div>
     <div class="top">
-
       <router-link to="/city" tag="li" class="city ">
-          <i class="iconfont icon-compass"></i>
-          <span>{{name}}</span>
+        <i class="iconfont icon-compass"></i>
+        <span>{{ name }}</span>
       </router-link>
-      <mt-search  placeholder="输入你想搜索的关键字">
-
-      </mt-search>
+      <mt-search placeholder="输入你想搜索的关键字"> </mt-search>
 
       <router-link to="/city" tag="li" class="city ">
-          <i class="iconfont icon-comments"></i>
-          <span>消息</span>
+        <i class="iconfont icon-comments"></i>
+        <span>消息</span>
       </router-link>
     </div>
-    <div v-if='looplist.length'>
-    <!-- <mt-swipe :auto="4000" v-if="looplist.length" :prevent='true'>
+    <div v-if="looplist.length">
+      <!-- <mt-swipe :auto="4000" v-if="looplist.length" :prevent='true'>
       <mt-swipe-item v-for="data in looplist" :key="data.id">
           <img :src="data.appImg" alt="">
       </mt-swipe-item>
     </mt-swipe> -->
-    <mt-swipe :auto="4000" :prevent='true'>
+      <!-- <mt-swipe :auto="4000" :prevent='true'>
       <mt-swipe-item v-for="data in looplist" :key="data.id">
         <img :src="data.appImg" alt="">
       </mt-swipe-item>
 
-    </mt-swipe>
+    </mt-swipe> -->
+      <swiper
+        :options="options"
+        v-if="looplist.length"
+        style="margin-top: .5rem;
+    width: 100%;"
+    class="loopswiper"
+    classname="loopswiper"
+      >
+        <div class="swiper-slide" v-for="data in looplist" :key="data.id">
+          <img :src="data.appImg" style="width:100%"/>
+          <!-- {{ data }} -->
+        </div>
+      </swiper>
     </div>
 
     <asidebar></asidebar>
 
-    <h3> <span>今日推荐</span></h3>
-    <swiper :options="navoptions" v-if="swiperlist.length">
-           <div class="swiper-slide nav" v-for="(data,index) in swiperlist" :key="index">
-                <img :src="data.icon">
-                <span>{{data.name}}</span>
-          </div>
+    <h3><span>今日推荐</span></h3>
+    <swiper :options="navoptions" v-if="swiperlist.length" class="listswiper" classname="listswiper" >
+      <div
+        class="swiper-slide nav"
+        v-for="data in swiperlist"
+        :key="data.id"
+        
+      >
+        <img :src="data.icon" />
+        <span>{{ data.name }}</span>
+      </div>
     </swiper>
 
     <mainbar></mainbar>
@@ -44,37 +59,49 @@
 </template>
 <script>
 import swiper from "@/components/swiper";
-import asidebar from '@/views/Index/asidebar';
-import mainbar from '@/views/Index/mainbar';
+import asidebar from "@/views/Index/asidebar";
+import mainbar from "@/views/Index/mainbar";
 import Axios from "axios";
-import { Indicator,Swipe, SwipeItem } from "mint-ui";
+import { Indicator, Swipe, SwipeItem } from "mint-ui";
 
-import Vue from 'vue';
+import Vue from "vue";
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 export default {
   data() {
     return {
       looplist: [],
-      swiperlist:[],
-      name:"",
-      navoptions:{
+      swiperlist: [],
+      name: "",
+      navoptions: {
         slidesPerView: 3,
         spaceBetween: 3,
-        freeMode: true,
+        freeMode: true
+      },
+      options: {
+        // direction: 'vertical',
+        loop: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        }
       }
-    }
+    };
   },
   components: {
     swiper,
     asidebar,
-    mainbar,
+    mainbar
   },
   mounted() {
-     Indicator.open({
-        text: '加载中...',
-        spinnerType: 'fading-circle',
-      });
+    Indicator.open({
+      text: "加载中...",
+      spinnerType: "fading-circle"
+    });
     Axios({
       url: "/front/handle/control.do",
       method: "post",
@@ -94,21 +121,26 @@ export default {
       this.looplist = res.data.biz_result.list;
       console.log(this.looplist);
       Indicator.close();
-      var a = localStorage.getItem("name");
+    });
+    if(!localStorage.getItem("name")){
+      this.name = "定位中.."
+    }else{
+       var a = localStorage.getItem("name");
       console.log(a);
       this.name = a;
-
-    });
+    }
+      
 
     Axios({
-      url:'/front/handle/control.do',
-      method:'post',
-      data:{
-        biz_module: "breedService", biz_method: "hotDrugPropertiesInfo",
-        biz_param: {pn: 1, pSize: 10},
+      url: "/front/handle/control.do",
+      method: "post",
+      data: {
+        biz_module: "breedService",
+        biz_method: "hotDrugPropertiesInfo",
+        biz_param: { pn: 1, pSize: 10 },
         biz_method: "hotDrugPropertiesInfo",
         biz_module: "breedService",
-        biz_param: {pn: 1, pSize: 10},
+        biz_param: { pn: 1, pSize: 10 },
         version: "3.10.0"
       },
       headers: {
@@ -116,12 +148,11 @@ export default {
         "X-Requested-With": "XMLHttpRequest",
         "Content-Type": "application/json;charset=UTF-8"
       }
-      }).then(res => {
+    }).then(res => {
       // console.log(res.data.biz_result)
-          this.swiperlist = res.data.biz_result.list;
-          console.log(this.swiperlist);
-        }
-     );
+      this.swiperlist = res.data.biz_result.list;
+      console.log(this.swiperlist);
+    });
   }
 };
 </script>
@@ -137,10 +168,10 @@ export default {
   z-index: 999;
   text-align: center;
 }
-.mint-searchbar{
-    height: 50px;
+.mint-searchbar {
+  height: 50px;
 }
-.mint-search{
+.mint-search {
   height: 100%;
   overflow: hidden;
 }
@@ -163,7 +194,7 @@ export default {
         background: rgba($color: #000000, $alpha: .5);
         position: absolute;
         bottom: 0;
-        left: 0;
+        left: .1rem;
         text-align: center;
         color: white;
       }
@@ -201,17 +232,19 @@ export default {
     .top{
        background: rgb(192, 163, 34);
        display:flex;
-
     }
-  h3{
-    height: .4rem;
-    line-height: .4rem;
-    span {
-      border-left: .03rem solid #2b669a;
-      margin-left: .15rem;
-      box-sizing: border-box;
-      width: 50%;
-      padding-left: .06rem;
-    }
+h3 {
+  height: 0.4rem;
+  line-height: 0.4rem;
+  span {
+    border-left: 0.03rem solid #2b669a;
+    margin-left: 0.15rem;
+    box-sizing: border-box;
+    width: 50%;
+    padding-left: 0.06rem;
   }
+}
+/deep/.swiper-pagination{
+  text-align: center;
+}
 </style>
