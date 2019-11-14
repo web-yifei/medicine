@@ -34,7 +34,7 @@ export default {
 
     }
   },
-  
+
 }
 </script>
 <style lang="scss" scoped>
@@ -59,9 +59,8 @@ div{
     font-size: .15rem
   }
   .doctor{
-    margin-top: .1rem;
     border-top: .01rem solid #ccc;
   }
 }
-  
+
 </style>

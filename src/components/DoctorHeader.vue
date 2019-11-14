@@ -24,7 +24,7 @@
 <script>
 export default {
     methods: {
-        
+
     },
 }
 </script>
@@ -71,7 +71,7 @@ export default {
                 text-align: center;
             }
         }
-        
-        
+
+
     }
 </style>

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Index from '@/views/Index'
-// import Classify from '@/views/Classify'
+import Classify from '@/views/Classify'
 import Dignose from '@/views/Dignose'
 import My from '@/views/My'
 import Login from '@/views/Login'
@@ -17,8 +17,7 @@ import Feedback from '@/views/Feedback'
 import Amend from '@/views/Amend'
 import CalcSuccess from '@/views/CalcSuccess'
 import SubmitSuccess from "@/views/SubmitSuccess"
-import Classifydetails from '@/views/children/Classifydetails'
-import ChangeHead from '@/views/My/ChangeHead'
+import Show from "@/views/Classify/Show"
 Vue.use(VueRouter)
 
 const routes = [
@@ -28,14 +27,17 @@ const routes = [
   },
   {
     path: '/classify',
-    redirect: '/classifydetails/0'
+    component: Classify,
+    children:[
+      {
+        path: 'show',
+        component: Show
+      },{
+        path: '/',
+        redirect: 'show'
+      }
+    ]
   },
-  {
-    name: 'classifydetails',
-    path: '/classifydetails/:myid',
-    component: Classifydetails
-  },
-
   {
     path: '/message',
     component: Dignose
@@ -67,10 +69,6 @@ const routes = [
   {
     path: '/calc',
     component: Calc
-  },
-  {
-    path: '/changeHead',
-    component: ChangeHead
   },
   {
     path: '/doctors',

@@ -1,51 +1,70 @@
 <template>
-    <div>
+    <div class="body">
         <h3> <span>养生贴士</span> <span class="more">更多></span></h3>
-        <dl>
+        <div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-immediate-check="false" infinite-scroll-distance="10">
+          <dl v-for="item of datalist" :key="item.ID" @click="linkHandle(item.guid)">
             <dd>
-                <img src="" alt="">
+              <img :src="'http:'+item.post_image" alt="">
             </dd>
             <dt>
-                <h4>[春季养生原则]养肝为主 注意防风</h4>
-                <p>春季饮食调养以养肝、清肝、入肝经食物为主。适当食用</p>
+              <h4>{{item.post_name}}</h4>
+              <p>
+                  <span v-for="data of item.tags" :key="data.term_id">
+                    {{data.name}}
+                  </span>
+              </p>
+              <div>
+                {{item.views}}已读
+              </div>
             </dt>
-        </dl>
+          </dl>
+        </div>
 
-          <dl>
-            <dd>
-                <img src="" alt="">
-            </dd>
-            <dt>
-                <h4>[春季养生原则]养肝为主 注意防风</h4>
-                <p>春季饮食调养以养肝、清肝、入肝经食物为主。适当食用</p>
-            </dt>
-        </dl>
-
-          <dl>
-            <dd>
-                <img src="" alt="">
-            </dd>
-            <dt>
-                <h4>[春季养生原则]养肝为主 注意防风</h4>
-                <p>春季饮食调养以养肝、清肝、入肝经食物为主。适当食用</p>
-            </dt>
-        </dl>
-
-          <dl class="last">
-            <dd>
-                <img src="" alt="">
-            </dd>
-            <dt>
-                <h4>[春季养生原则]养肝为主 注意防风</h4>
-                <p>春季饮食调养以养肝、清肝、入肝经食物为主。适当食用</p>
-            </dt>
-        </dl>
     </div>
 </template>
+<script>
+  import Axios from 'axios'
+  export default {
+      data(){
+          return {
+            datalist:[],
+              page:1,
+              loading:false,
+              count:0
+          }
+      },
+      mounted() {
+          Axios.get(`/zixun/?rest_route=%2FgetCatTop%2FgetCatTop&cid=46&page=${this.page}&t=1573706706`).then(res => {
+              let {list} = res.data.result;
+              console.log(list,456465)
+              this.datalist = list;
+          })
+      },
+      methods:{
+          loadMore(){
+              this.loading = true
+              this.page++
+              Axios.get(`/zixun/?rest_route=%2FgetCatTop%2FgetCatTop&cid=46&page=${this.page}&t=1573706706`).then(res => {
+                  let {list} = res.data.result;
+                  if (list.length === 0){
+                      return;
+                  }
+                  this.datalist=[...this.datalist,...list]
+                  this.loading=false
+              })
+          },
+          linkHandle(link){
+              console.log(link)
+              location.href = `https://www.zk120.com${link}`
+          }
+      }
+  }
+</script>
 <style lang="scss" scoped>
-  div{
+  div.body{
     margin-top: .2rem;
     border-top: 0.05rem solid #dedede;
+    margin-bottom: .5rem;
   }
   h3{
     height: .4rem;
@@ -73,9 +92,11 @@
             float:left;
             height:.5rem;
             width: 1rem;
-            background:#ff0;
             margin-left: .1rem;
             margin-top: .2rem;
+            img{
+              width: 100%;
+            }
         }
         dt{
             float:left;
@@ -85,8 +106,23 @@
             h4{
                 margin-bottom: .1rem;
                 margin-top: .15rem;
+                padding-right: .1rem;
             }
-
+            p{
+              width: 1.5rem;
+              float: left;
+              span{
+                color: #777;
+              }
+            }
+          div{
+            margin: 0;
+            border: none;
+            float: right;
+            width: .8rem;
+            font-size: .12rem;
+            color: #777;
+          }
         }
     }
     .last{

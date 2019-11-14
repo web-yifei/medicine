@@ -1,27 +1,37 @@
 <template>
-    <div>
-        分类
-        <router-link to="/index"><button>返回</button></router-link>
-        <button @click="handleClick">人参</button>
-        <Classify-bar class="ClassifyBar"></Classify-bar>
-    </div>
+  <div :style="clientHeight">
+    <mt-header fixed title="分类" class="header">
+      <router-link to="/index" slot="left">
+        <mt-button icon="back"></mt-button>
+      </router-link>
+    </mt-header>
+    <ClassifyBar></ClassifyBar>
+    <router-view></router-view>
+  </div>
 </template>
 <script>
-import ClassifyBar from './ClassifyBar'
+import ClassifyBar from "@/views/ClassifyBar";
 export default {
-  methods: {
-    handleClick () {
-      this.router.push({ path: `/detail/${shopId}` })
-    }
+  data() {
+    return {
+      clientHeight: {
+        height: "",
+      }
+    };
   },
-  components:{
-    ClassifyBar
+  components: { ClassifyBar },
+  mounted() {
+    this.clientHeight.height =
+      document.documentElement.innerHeight - 1.4 + "rem";
+  },
+  updated() {
   }
-}
+};
 </script>
 <style lang="scss" scoped>
-    div{
-      position: relative;
-    }
-    
+.header {
+  box-shadow: 0 0.01rem 0.03rem;
+  background-color: #fff;
+  color: #3e3e3e;
+}
 </style>
