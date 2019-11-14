@@ -2,7 +2,7 @@
   <aside>
     <ul>
       <div>
-        <router-link to="" tag="li">
+        <router-link to="/hot" tag="li">
           <span class="iconfont icon-rexiao-"></span>
         </router-link>
         <span>热销药材</span>
