@@ -2,7 +2,7 @@
   <div>
       <mt-header fixed title="医生详情">
             <mt-button icon="back" slot="left" @click="handleClick"></mt-button>
-        </mt-header>
+      </mt-header>
     <DocdetailBar></DocdetailBar>
     <div class="Indications">
       <ul>
@@ -31,7 +31,8 @@
   </div>
 </template>
 <script>
-import DocdetailBar from '@/views/Docdetail/DocdetailBar'
+import DocdetailBar from '@/views/Docdetail/DocdetailBar';
+import Axios from 'axios';
 export default {
    beforeMount() {
     this.$store.commit("hideTabbar");
@@ -44,13 +45,22 @@ export default {
   },
   data() {
     return {
-      datalist:  ["1", "2", "3", "4",'5','6','7','8'],
+      datalist: [],
       briefIntroduction:'毕业于大连医科大学，曾是从伤寒大家郝万山，及国内，辽宁省内诸多名老中医大家！业医二十余年，临床经验丰富，现就职于北京同仁堂大连中医医院，荣华双西国医固安，勤研中',
       DoctorServices:'留言详细说明病人病情症状',
       DoctorServices2:'并附上病人面照，舌苔照（有条件者可附上病人过往病历）',
       Notice:'全天9：00～17：00均可留言(所填内容需真实客观,其将用于中医辨证分型及处方用药)'
 
     };
+  },
+  mounted() {
+    console.log()
+    Axios.get("/api/doctor/list",{params:{id:this.$route.params.doctorId}}).then(res=>{
+      console.log(res.data);
+      let {data} = res.data
+      this.datalist = data[0];
+      
+    })
   },
   methods: {
     handleClick() {
