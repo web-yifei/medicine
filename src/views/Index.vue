@@ -27,8 +27,8 @@
       <swiper
         :options="options"
         v-if="looplist.length"
-        style="margin-top: .5rem;height: 1.69rem;
-    width: 100%; background:pink;"
+        style="margin-top: .5rem;
+    width: 100%;"
     class="loopswiper"
     classname="loopswiper"
       >
@@ -121,10 +121,15 @@ export default {
       this.looplist = res.data.biz_result.list;
       console.log(this.looplist,2222);
       Indicator.close();
-      var a = localStorage.getItem("name");
+    });
+    if(!localStorage.getItem("name")){
+      this.name = "定位中.."
+    }else{
+       var a = localStorage.getItem("name");
       console.log(a);
       this.name = a;
-    });
+    }
+      
 
     Axios({
       url: "/front/handle/control.do",
@@ -170,55 +175,64 @@ export default {
   height: 100%;
   overflow: hidden;
 }
-.swiper-wrapper {
-  margin-top: 0;
-}
-.nav {
-  width: 1rem;
-  height: 1rem;
-  img {
-    width: 1rem;
-    height: 1rem;
-  }
-  span {
-    width: 1rem;
-    height: 0.25rem;
-    background: rgba($color: #000000, $alpha: 0.5);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    color: white;
-  }
-}
+   .swiper-wrapper{
+      margin-top: 0;
+    }
+    .nav{
+        width: 1rem;
+        height: 1rem;
+      img{
+        width: 1rem;
+        height: 1rem;
+        margin: 0 auto;
+        text-align: center;
 
-.city {
-  width: 0.3rem;
-  height: 0.5rem;
-  flex: 10%;
-  color: white;
-  font-size: 0.12rem;
-  display: flex;
-  flex-direction: column;
-  i {
-    display: block;
-    width: 0.3rem;
-    height: 0.2rem;
-    line-height: 0.2rem;
-    margin: 0 auto;
-    margin-top: 0.1rem;
-  }
-  span {
-    display: block;
-    height: 0.2rem;
-    line-height: 0.2rem;
-    text-align: center;
-  }
-}
-.top {
-  background: rgb(192, 163, 34);
-  display: flex;
-}
+      }
+      span{
+        width: 1rem;
+        height: .25rem;
+        background: rgba($color: #000000, $alpha: .5);
+        position: absolute;
+        bottom: 0;
+        left: .1rem;
+        text-align: center;
+        color: white;
+      }
+    }
+    .mint-swipe{
+      height: 2rem;
+      margin-top: .5rem;
+    }
+    .mint-swipe-indicator.is-active{
+      background: skyblue;
+    }
+    .city{
+      width: .3rem;
+      height: .5rem;
+      flex: 10%;
+      color: white;
+      font-size: .12rem;
+      display: flex;
+      flex-direction: column;
+      i{
+        display: block;
+        width: .3rem;
+        height: .2rem;
+        line-height: .2rem;
+        margin: 0 auto;
+        margin-top: .1rem;
+      }
+      span{
+        display: block;
+        height: .2rem;
+        line-height: .2rem;
+        text-align: center;
+      }
+    }
+    .top{
+       background: rgb(192, 163, 34);
+       display:flex;
+    }
 h3 {
   height: 0.4rem;
   line-height: 0.4rem;
@@ -229,5 +243,8 @@ h3 {
     width: 50%;
     padding-left: 0.06rem;
   }
+}
+/deep/.swiper-pagination{
+  text-align: center;
 }
 </style>

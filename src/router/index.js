@@ -98,6 +98,7 @@ const routes = [
     path:'/submitSuccess',
     component:SubmitSuccess
   },
+  
   {
     path: '*',
     redirect: '/index'
