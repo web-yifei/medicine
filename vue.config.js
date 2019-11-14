@@ -17,7 +17,7 @@ module.exports = {
       "/ajax": {
         target: "http://m.maoyan.com",
         changeOrigin: true
-      }
+      },
     }
   }
 };

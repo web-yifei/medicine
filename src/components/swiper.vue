@@ -25,7 +25,8 @@ export default {
     .swiper-container{
  
         img{
-            height: 100%
+            width: 100%;
+            height: 1.5rem;
         }
     }
     .swiper-pagination{

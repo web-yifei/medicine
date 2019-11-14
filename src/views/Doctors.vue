@@ -146,6 +146,7 @@ header {
 main{
   widows: 100%;
    margin-bottom: .5rem;
+   height: 100%;
   ul{
     width: 100%;
     li{

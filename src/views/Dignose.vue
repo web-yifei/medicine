@@ -252,8 +252,8 @@ aside {
 
 main {
   width: 100%;
-  height: 1.75rem;
- 
+  height: 100%;
+  margin-bottom: .5rem;
   ul {
     display: flex;
 

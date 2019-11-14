@@ -67,11 +67,14 @@ export default {
         this.$router.back();
     }
   },
-  beforeMount () { 
-     this.$store.commit('hideTabbar')
+  mounted() {
+    this.$store.commit('hideTabbar')
+    console.log('cart mounted');
   },
-  beforeDestroy () { 
+  destroyed () { 
      this.$store.commit('showTabbar')
+    console.log('cart beforeDestroyed');
+    
   },
 }
 </script>

@@ -2,7 +2,7 @@
     <div class="body">
         <div class="head">
             
-            <router-link to="/message" tag="span"><span class="message">back</span></router-link>
+            <router-link to="/message" tag="span"><span class="message"></span></router-link>
             <div class="img">
                 <img :src="'http://localhost:3000'+$store.state.my_title.headPic" alt="">
             </div>
