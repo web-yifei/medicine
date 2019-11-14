@@ -32,8 +32,8 @@
     class="loopswiper"
     classname="loopswiper"
       >
-        <div class="swiper-slide" v-for="data in looplist" :key="data.id">
-          <img :src="data.appImg" style="width:100%"/>
+        <div class="swiper-slide" v-for="data in looplist" :key="data._id">
+          <img :src="data.pic" style="width:100%"/>
           <!-- {{ data }} -->
         </div>
       </swiper>
@@ -46,8 +46,8 @@
       <div
         class="swiper-slide nav"
         v-for="data in swiperlist"
-        :key="data.id"
-        
+        :key="data._id"
+
       >
         <img :src="data.icon" />
         <span>{{ data.name }}</span>
@@ -102,26 +102,11 @@ export default {
       text: "加载中...",
       spinnerType: "fading-circle"
     });
-    Axios({
-      url: "/front/handle/control.do",
-      method: "post",
-      data: {
-        biz_module: "herbBannerService",
-        biz_method: "queryBannerList",
-        biz_param: { type: 1 },
-        version: "3.10.0"
-      },
-      headers: {
-        "mg-client": "H5",
-        "X-Requested-With": "XMLHttpRequest",
-        "Content-Type": "application/json;charset=UTF-8"
-      }
-    }).then(res => {
-      // console.log(res.data.biz_result)
-      this.looplist = res.data.biz_result.list;
-      console.log(this.looplist,2222);
+    Axios.get('/api/slider').then(res => {
+      this.looplist = res.data.data;
       Indicator.close();
     });
+
     if(!localStorage.getItem("name")){
       this.name = "定位中.."
     }else{
@@ -129,29 +114,9 @@ export default {
       console.log(a);
       this.name = a;
     }
-      
 
-    Axios({
-      url: "/front/handle/control.do",
-      method: "post",
-      data: {
-        biz_module: "breedService",
-        biz_method: "hotDrugPropertiesInfo",
-        biz_param: { pn: 1, pSize: 10 },
-        biz_method: "hotDrugPropertiesInfo",
-        biz_module: "breedService",
-        biz_param: { pn: 1, pSize: 10 },
-        version: "3.10.0"
-      },
-      headers: {
-        "mg-client": "H5",
-        "X-Requested-With": "XMLHttpRequest",
-        "Content-Type": "application/json;charset=UTF-8"
-      }
-    }).then(res => {
-      // console.log(res.data.biz_result)
-      this.swiperlist = res.data.biz_result.list;
-      console.log(this.swiperlist);
+    Axios.get('/api/swiper').then(res => {
+      this.swiperlist = res.data.data;
     });
   }
 };
@@ -159,8 +124,8 @@ export default {
 <style lang="scss" scoped>
 .top {
   position: fixed;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
   background: white;
   width: 100%;
   height: 50px;

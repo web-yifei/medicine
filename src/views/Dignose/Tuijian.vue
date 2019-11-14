@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <div class="recommend">
       <span></span>
       推荐医生
@@ -7,15 +7,17 @@
     </div>
     <main>
       <ul>
-        <div v-for="item of datalist" :key="item.id">
+        <div v-for="item of datalist" :key="item.id" class="loop">
           <router-link to="/docdetail/:doctorId" tag="li" @click="handleclick()">
             <img :src="item.pic" alt="" />
           </router-link>
-          <span class="firstspan">{{item.department | filter2}}：{{item.name}}</span>
-          <span>{{item.tags | filter}}</span>
-          <router-link to="/docdetail/:doctorId" tag="span" @click="handleclick()">
-            <p>立即留言<i>》</i></p>
-          </router-link>
+          <div class="content">
+            <span class="firstspan">{{item.department | filter2}}：{{item.name}}</span>
+            <span>{{item.tags | filter}}</span>
+            <router-link to="/docdetail/:doctorId" tag="span" @click="handleclick()">
+              <p>立即留言<i>》</i></p>
+            </router-link>
+          </div>
         </div>
       </ul>
     </main>
@@ -55,11 +57,14 @@
 </script>
 
 <style scoped lang="scss">
+  div.body{
+    background-color: #fafafa;
+  }
   .recommend {
     width: 100%;
-    height: 20px;
+    height: .2rem;
     color: rgba(16, 16, 16, 1);
-    font-size: 14px;
+    font-size: .14rem;
     text-align: center;
     font-family: PingFangSC-regular;
     margin: 0.27rem 0rem 0.2rem;
@@ -84,24 +89,39 @@
         margin-left: 0.05rem;
       }
 
-      div {
-        background: pink;
+      div.loop {
+        box-shadow: .01rem .01rem .07rem #ccc;
+        box-shadow: -.01rem .01rem .07rem #ccc;
+        background: #fff;
         width: 33.333%;
-        height: 2.1rem;
+        height: 1.95rem;
         line-height: 20px;
         text-align: center;
         border: 1px solid rgba(187, 187, 187, 1);
         margin: 0 0.05rem 0 0;
+        position: relative;
         li {
           width: 100%;
+          position: relative;
           img {
             display: block;
-            width: 100%;
+            width: 90%;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
             /*height: 0.8rem;*/
             background: lightblue;
+            top: .05rem;
           }
         }
-
+        .content{
+          position: absolute;
+          width: 95%;
+          left: 50%;
+          transform: translate(-50%);
+          text-align: center;
+          bottom: .12rem;
+        }
         span {
           display: block;
           margin: 0.02rem 0;

@@ -36,7 +36,6 @@
       mounted() {
           Axios.get(`/zixun/?rest_route=%2FgetCatTop%2FgetCatTop&cid=46&page=${this.page}&t=1573706706`).then(res => {
               let {list} = res.data.result;
-              console.log(list,456465)
               this.datalist = list;
           })
       },
