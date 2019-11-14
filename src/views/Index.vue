@@ -119,7 +119,7 @@ export default {
     }).then(res => {
       // console.log(res.data.biz_result)
       this.looplist = res.data.biz_result.list;
-      console.log(this.looplist);
+      console.log(this.looplist,2222);
       Indicator.close();
     });
     if(!localStorage.getItem("name")){

@@ -11,13 +11,16 @@ module.exports = {
         changeOrigin: true
       },
       "/api": {
-        target: "http://localhost:3000",
+        target: "http://10.2.153.48:3000",
         changeOrigin: true
       },
       "/ajax": {
         target: "http://m.maoyan.com",
         changeOrigin: true
       },
+      "/zixun": {
+        target: "https://www.zk120.com"
+      }
     }
   }
 };

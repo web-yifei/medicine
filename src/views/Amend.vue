@@ -1,5 +1,10 @@
 <template>
   <div>
+    <mt-header fixed class="header">
+      <router-link to="/my" slot="left">
+        <mt-button icon="back"></mt-button>
+      </router-link>
+    </mt-header>
     <div class="login-form" :style="{ height: indexHeight }">
       <h1>修改密码</h1>
       <div class="txtb">
@@ -109,6 +114,10 @@ export default {
 <style lang="scss" scoped>
 .warn{
     color:red;
+}
+.header{
+  background-color: #f7f7f7;
+  color: #3e3e3e;
 }
     *{
     margin: 0;
