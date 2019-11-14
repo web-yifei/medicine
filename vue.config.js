@@ -18,13 +18,6 @@ module.exports = {
         target: "http://m.maoyan.com",
         changeOrigin: true
       },
-<<<<<<< HEAD
-      "/mobile":{
-        target:"http://gateway.fangkuaiyi.com",
-        changeOrigin: true
-      }
-=======
->>>>>>> 1aa31052cb6c7d9b74305dcfe8afed6b0fefb38c
     }
   }
 };
