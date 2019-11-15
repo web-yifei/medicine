@@ -16,17 +16,17 @@
     </div>
     <div class="DoctorServices">
       <h3>医生服务</h3>
-      <p>问诊开方<span>￥30元/次</span></p> 
+      <p>问诊开方<span>￥30元/次</span></p>
       <p>
       留言详细说明病人病情症状
-      </p>  
+      </p>
       <p>并附上病人面照，舌苔照（有条件者可附上病人过往病历）</p>
     </div>
     <div class="Notice">
       <h3>公告</h3>
       <p>全天9：00～17：00均可留言(所填内容需真实客观,其将用于中医辨证分型及处方用药)</p>
     </div>
-        <button class="commit">立即留言</button>
+        <button class="commit" @click="liuyan()">立即留言</button>
 
   </div>
 </template>
@@ -51,7 +51,6 @@ export default {
   mounted() {
     this.$store.commit("hideTabbar");
     Axios.get("/api/doctor/list",{params:{id:this.$route.params.doctorId}}).then(res=>{
-      console.log(res.data);
       this.data = res.data.data[0];
       this.datalist = this.data.tags.split("、").slice(0,12);
       this.fourth(this.datalist);
@@ -60,19 +59,19 @@ export default {
   methods: {
     fourth(list){
       var newlist = list.map(item=>item.substring(0,4))
-      console.log(newlist);
       this.fourthlist = Array.from(newlist)
     },
     handleClick() {
     this.$router.back();
-    
+
       console.log('111');
-      
+
     },
     liuyan() {
-      this.router.push({ path: `/docdetail/${doctorId}/form` });
+      this.$router.push(`/docdetail/${this.$route.params.doctorId}/form`);
     }
-  }
+  },
+
 };
 </script>
 <style lang="scss" scoped>
@@ -100,7 +99,7 @@ export default {
   .DoctorServices span{
     color: red;
     padding-left:.2rem;
-    
+
   }
    .mint-header{
         background: white;

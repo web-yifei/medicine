@@ -41,7 +41,7 @@
           window.onscroll = () => {
               if (this.$refs.yangsheng.getBoundingClientRect().top <= 45){
                   this.$refs.yangsheng.children[0].style.position='fixed'
-                  this.$refs.yangsheng.children[0].style.top=45+'px'
+                  this.$refs.yangsheng.children[0].style.top='.45rem'
                   this.$refs.yangsheng.children[0].style.backgroundColor='#fff'
                   this.$refs.yangsheng.children[0].style.width='100%'
               }else{

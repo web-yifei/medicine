@@ -21,6 +21,14 @@ export default {
           }
       },
     mounted() {
+        Indicator.open({
+            text: "加载中...",
+            spinnerType: "fading-circle"
+        });
+        Axios.get('/api/shop/shoplist').then(res => {
+            this.datalist = res.data
+            Indicator.close();
+        })
     },
     methods:{
       detailClick(id){
