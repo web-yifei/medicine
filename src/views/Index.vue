@@ -38,7 +38,7 @@
         class="swiper-slide nav"
         v-for="data in swiperlist"
         :key="data._id"
-
+        @click="detailClick(data.id)"
       >
         <img :src="data.icon" />
         <span>{{ data.name }}</span>
@@ -88,6 +88,11 @@ export default {
     asidebar,
     mainbar
   },
+    methods:{
+      detailClick(id){
+          this.$router.push(`/detail/${id}`)
+      }
+    },
   mounted() {
     Indicator.open({
       text: "加载中...",
