@@ -3,7 +3,7 @@
     <ul>
       <div>
         <router-link to="/hot" tag="li">
-          <span class="iconfont icon-rexiao-"></span>
+          <span class="iconfont icon-remen"></span>
         </router-link>
         <span>热销药材</span>
       </div>
@@ -17,7 +17,7 @@
 
       <div>
         <router-link to="" tag="li">
-          <span class="iconfont icon-redian"></span>
+          <span class="iconfont icon-rediantance"></span>
         </router-link>
         <span>药材热点</span>
       </div>

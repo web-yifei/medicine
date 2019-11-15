@@ -2,7 +2,7 @@
     <div class="body">
         <div class="head">
             
-            <router-link to="/message" tag="span"><span class="message"></span></router-link>
+            <!-- <router-link to="/message" tag="span"><span class="message"></span></router-link> -->
             <div class="img">
                 <img :src="info.pic" alt="">
             </div>
@@ -49,14 +49,15 @@ export default {
 <style lang="scss" scoped>
     .body{
         background: #fff;
-        position: relative;
+        // position: relative;
         div.head{
             height: .9rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
+            // display: flex;
+            // align-items: center;
+            // justify-content: space-around;
             border-bottom: .01rem solid #ccc;
             .img{
+                margin-right: 1rem;
                 height: .72rem;
                 width: .72rem;
                 img{
@@ -65,6 +66,7 @@ export default {
                 }
             }
             .intro{
+                // flex: 1;
                 justify-self: flex-start;
                 display: flex;
                 flex-direction: column;

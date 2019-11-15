@@ -10,10 +10,12 @@
         <li v-for="(data,index) in fourthlist" :key="index">{{data}}</li>
       </ul>
     </div>
+
     <div class="briefIntroduction">
       <h3>简介</h3>
       <p>{{data.introduction}}</p>
     </div>
+
     <div class="DoctorServices">
       <h3>医生服务</h3>
       <p>问诊开方<span>￥30元/次</span></p> 
@@ -22,10 +24,12 @@
       </p>  
       <p>并附上病人面照，舌苔照（有条件者可附上病人过往病历）</p>
     </div>
+
     <div class="Notice">
       <h3>公告</h3>
       <p>全天9：00～17：00均可留言(所填内容需真实客观,其将用于中医辨证分型及处方用药)</p>
     </div>
+
         <button class="commit">立即留言</button>
 
   </div>
@@ -81,7 +85,8 @@ export default {
 .DoctorServices,
 .Notice{
     height: 1.5rem;
-    padding-left: .2rem
+    padding-left: .15rem;
+    padding-right: .15rem;
   }
   h3{
     height: .4rem;
@@ -119,10 +124,6 @@ export default {
       border-radius: .1rem;
       color: white;
       font-size: .16rem;
-    }
-    .briefIntroduction>p{
-      height: 25px;
-      line-height: 25px;
     }
     .Indications ul{
       margin: 0 auto;
