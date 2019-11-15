@@ -18,7 +18,7 @@
 
     <div class="DoctorServices">
       <h3>医生服务</h3>
-      <p>问诊开方<span>￥30元/次</span></p> 
+      <p>问诊开方<span>￥{{data.price}}元/次</span></p> 
       <p>
       留言详细说明病人病情症状
       </p>  
