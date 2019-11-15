@@ -62,7 +62,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     div.body{
-        margin-top: .4rem;
+        margin-top: .5rem;
         width: 75%;
         float: right;
         box-sizing: border-box;
@@ -85,6 +85,7 @@ export default {
                 li{
                     width: 30%;
                     height: .85rem;
+                    margin-bottom: .15rem;
                     img{
                         width: 100%;
                         height: 80%;
@@ -92,6 +93,7 @@ export default {
                     }
                     p{
                         text-align: center;
+                        margin-top: .07rem;
                     }
                 }
             }

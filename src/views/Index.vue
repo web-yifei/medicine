@@ -124,13 +124,13 @@ export default {
   top: 0;
   background: white;
   width: 100%;
-  height: .50rem;
-  line-height: .50rem;
+  height: .5rem;
+  line-height: .5rem;
   z-index: 999;
   text-align: center;
 }
 .mint-searchbar {
-  height: .50rem;
+  height: .5rem;
 }
 .mint-search {
   height: 100%;

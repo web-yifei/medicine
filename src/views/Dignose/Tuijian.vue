@@ -58,72 +58,48 @@
 </script>
 
 <style scoped lang="scss">
-  div.body{
-    background-color: #fafafa;
+
+.recommend {
+  width: 100%;
+  height: 20px;
+  color: rgba(16, 16, 16, 1);
+  font-size: 14px;
+  text-align: center;
+  font-family: PingFangSC-regular;
+  margin: 0.27rem 0rem 0.2rem;
+  span {
+    display: inline-block;
+    width: 0.59rem;
+    height: 0.01rem;
+    background: #bbbbbb;
+    vertical-align: middle;
+    margin: 0rem 0.05rem;
   }
-  .recommend {
-    width: 100%;
-    height: .2rem;
-    color: rgba(16, 16, 16, 1);
-    font-size: .14rem;
-    text-align: center;
-    font-family: PingFangSC-regular;
-    margin: 0.27rem 0rem 0.2rem;
-    span {
-      display: inline-block;
-      width: 0.59rem;
-      height: 0.01rem;
-      background: #bbbbbb;
-      vertical-align: middle;
-      margin: 0rem 0.05rem;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0.5rem;
+  ul {
+    display: flex;
+
+    div:first-child {
+      margin-left: 0.05rem;
     }
-  }
 
-  main {
-    width: 100%;
-    height: 1.75rem;
-
-    ul {
-      display: flex;
-
-      div:first-child {
-        margin-left: 0.05rem;
-      }
-
-      div.loop {
-        box-shadow: .01rem .01rem .07rem #ccc;
-        box-shadow: -.01rem .01rem .07rem #ccc;
-        background: #fff;
-        width: 33.333%;
-        height: 1.95rem;
-        line-height: 20px;
-        text-align: center;
-        border: 1px solid rgba(187, 187, 187, 1);
-        margin: 0 0.05rem 0 0;
-        position: relative;
-        li {
-          width: 100%;
-          position: relative;
-          img {
-            display: block;
-            width: 90%;
-            position: absolute;
-            left: 50%;
-            transform: translate(-50%);
-            /*height: 0.8rem;*/
-            background: lightblue;
-            top: .05rem;
-          }
-        }
-        .content{
-          position: absolute;
-          width: 95%;
-          left: 50%;
-          transform: translate(-50%);
-          text-align: center;
-          bottom: .12rem;
-        }
-        span {
+    div {
+      background: #ffffff;
+      width: 33.333%;
+      height: 175px;
+      line-height: 20px;
+      text-align: center;
+      border: 1px solid rgba(187, 187, 187, 1);
+      margin: 0 0.05rem 0 0;
+      box-shadow: .0 .0 .05rem #cccccc;
+      li {
+        width: 100%;
+        img {
           display: block;
           margin: 0.02rem 0;
           p {
@@ -133,13 +109,26 @@
           }
           i {
             display: inline;
-            color: #ff9800;
+            color: rgb(192, 163, 34);
+            font-style: normal;
+            font-weight: 900;
+            margin-left: .05rem;
           }
         }
         .firstspan {
           margin-top: 0.1rem;
         }
       }
+      i{
+        color: #FF9800 ;
+      }
     }
   }
+}
+
+
+
+
+
+
 </style>
