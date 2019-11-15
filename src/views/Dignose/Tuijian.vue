@@ -102,6 +102,7 @@ main {
         img {
           display: block;
           margin: 0.02rem 0;
+          width: 100%;
           p {
             color: #101010;
             font-size: 0.12rem;
