@@ -1,31 +1,35 @@
 <template>
   <div>
       <mt-header fixed title="医生详情">
-            <mt-button icon="back" slot="left" @click="handleClick"></mt-button>
+            <mt-button icon="back" slot="left" @click="handleClick()"></mt-button>
       </mt-header>
     <DocdetailBar></DocdetailBar>
     <div class="Indications">
       <ul>
       <h3>主治</h3>
-        <li v-for="(data,index) in datalist" :key="index">{{data}}</li>
+        <li v-for="(data,index) in fourthlist" :key="index">{{data}}</li>
       </ul>
     </div>
+
     <div class="briefIntroduction">
       <h3>简介</h3>
-      <p>{{briefIntroduction}}</p>
+      <p>{{data.introduction}}</p>
     </div>
+
     <div class="DoctorServices">
       <h3>医生服务</h3>
       <p>问诊开方<span>￥30元/次</span></p> 
       <p>
-      {{DoctorServices}}
+      留言详细说明病人病情症状
       </p>  
-      <p>{{DoctorServices2}}</p>
+      <p>并附上病人面照，舌苔照（有条件者可附上病人过往病历）</p>
     </div>
+
     <div class="Notice">
       <h3>公告</h3>
-      <p>{{Notice}}</p>
+      <p>全天9：00～17：00均可留言(所填内容需真实客观,其将用于中医辨证分型及处方用药)</p>
     </div>
+
         <button class="commit">立即留言</button>
 
   </div>
@@ -34,10 +38,7 @@
 import DocdetailBar from '@/views/Docdetail/DocdetailBar';
 import Axios from 'axios';
 export default {
-   beforeMount() {
-    this.$store.commit("hideTabbar");
-  },
-  beforeDestroy() {
+  destroyed() {
     this.$store.commit("showTabbar");
   },
   components: {
@@ -46,25 +47,31 @@ export default {
   data() {
     return {
       datalist: [],
-      briefIntroduction:'毕业于大连医科大学，曾是从伤寒大家郝万山，及国内，辽宁省内诸多名老中医大家！业医二十余年，临床经验丰富，现就职于北京同仁堂大连中医医院，荣华双西国医固安，勤研中',
-      DoctorServices:'留言详细说明病人病情症状',
-      DoctorServices2:'并附上病人面照，舌苔照（有条件者可附上病人过往病历）',
-      Notice:'全天9：00～17：00均可留言(所填内容需真实客观,其将用于中医辨证分型及处方用药)'
+      fourthlist:[],
+      data:'',
 
     };
   },
   mounted() {
-    console.log()
+    this.$store.commit("hideTabbar");
     Axios.get("/api/doctor/list",{params:{id:this.$route.params.doctorId}}).then(res=>{
       console.log(res.data);
-      let {data} = res.data
-      this.datalist = data[0];
-      
+      this.data = res.data.data[0];
+      this.datalist = this.data.tags.split("、").slice(0,12);
+      this.fourth(this.datalist);
     })
   },
   methods: {
+    fourth(list){
+      var newlist = list.map(item=>item.substring(0,4))
+      console.log(newlist);
+      this.fourthlist = Array.from(newlist)
+    },
     handleClick() {
-      this.router.back();
+    this.$router.back();
+    
+      console.log('111');
+      
     },
     liuyan() {
       this.router.push({ path: `/docdetail/${doctorId}/form` });
@@ -78,7 +85,8 @@ export default {
 .DoctorServices,
 .Notice{
     height: 1.5rem;
-    padding-left: .2rem
+    padding-left: .15rem;
+    padding-right: .15rem;
   }
   h3{
     height: .4rem;
@@ -116,10 +124,6 @@ export default {
       border-radius: .1rem;
       color: white;
       font-size: .16rem;
-    }
-    .briefIntroduction>p{
-      height: 25px;
-      line-height: 25px;
     }
     .Indications ul{
       margin: 0 auto;

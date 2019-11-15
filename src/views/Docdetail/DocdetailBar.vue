@@ -2,36 +2,62 @@
     <div class="body">
         <div class="head">
             
-            <router-link to="/message" tag="span"><span class="message"></span></router-link>
+            <!-- <router-link to="/message" tag="span"><span class="message"></span></router-link> -->
             <div class="img">
-                <img :src="'http://localhost:3000'+$store.state.my_title.headPic" alt="">
+                <img :src="info.pic" alt="">
             </div>
             <div class="intro">
-                <p>陈亦霏</p>
-                <div> <span>职业中医师</span> <span>疑难病儿科</span></div>
+                <p>{{info.name}}</p>
+                <div> <span>{{info.level}}</span> <span>{{info.department}}</span></div>
             </div>
         </div>
         
     </div>
 </template>
 <script>
+import Axios from 'axios'
 export default {
     methods: {
         
     },
+    data() {
+        return {
+            info:""
+        }
+    },
+      mounted() {
+    console.log()
+    Axios.get("/api/doctor/list",{params:{id:this.$route.params.doctorId}}).then(res=>{
+      
+      this.info = res.data.data[0]
+        console.log(this.info);
+        
+    //   this.datalist = data;
+    //   console.log(datalist);
+      
+    //   this.name = data[0].name;
+    //   this.level= data[0].level;
+    //   this.department = data[0].department;
+    //   this.src = data[0].pic;
+    //   console.log(this.src);
+      
+    })
+  },
+
 }
 </script>
 <style lang="scss" scoped>
     .body{
         background: #fff;
-        position: relative;
+        // position: relative;
         div.head{
             height: .9rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
+            // display: flex;
+            // align-items: center;
+            // justify-content: space-around;
             border-bottom: .01rem solid #ccc;
             .img{
+                margin-right: 1rem;
                 height: .72rem;
                 width: .72rem;
                 img{
@@ -40,6 +66,7 @@ export default {
                 }
             }
             .intro{
+                // flex: 1;
                 justify-self: flex-start;
                 display: flex;
                 flex-direction: column;
