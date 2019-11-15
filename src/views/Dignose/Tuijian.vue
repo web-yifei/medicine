@@ -7,17 +7,15 @@
     </div>
     <main>
       <ul>
-        <div v-for="item of datalist" :key="item.id" class="loop">
-          <router-link to="/docdetail/:doctorId" tag="li" @click="handleclick()">
-            <img :src="item.pic" alt="" />
-          </router-link>
-          <div class="content">
-            <span class="firstspan">{{item.department | filter2}}：{{item.name}}</span>
-            <span>{{item.tags | filter}}</span>
-            <router-link to="/docdetail/:doctorId" tag="span" @click="handleclick()">
-              <p>立即留言<i>》</i></p>
-            </router-link>
-          </div>
+        <div v-for="item of datalist" :key="item.id">
+          <li>
+            <img :src="item.pic" alt="" @click="handleClick(item.id)"/>
+          </li>
+          <span class="firstspan">{{item.department | filter2}}：{{item.name}}</span>
+          <span>{{item.tags | filter}}</span>
+          <span >
+            <p @click="handleClick(item.id)">立即留言<i>》</i></p>
+          </span>
         </div>
       </ul>
     </main>
@@ -35,8 +33,11 @@
             }
         },
         methods:{
-            handleClick() {
-                this.router.push({ path: `/doctor/${doctorId}` });
+            handleClick(doctorId) {
+              console.log(doctorId);
+              
+                this.$router.push({ path: `/docdetail/${doctorId}` });
+                console.log("999");
             }
         },
         filters:{
