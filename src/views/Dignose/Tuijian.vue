@@ -101,9 +101,22 @@ main {
         width: 100%;
         img {
           display: block;
-          width: 100%;
-          padding: .05rem;
-          
+          margin: 0.02rem 0;
+          p {
+            color: #101010;
+            font-size: 0.12rem;
+            display: inline;
+          }
+          i {
+            display: inline;
+            color: rgb(192, 163, 34);
+            font-style: normal;
+            font-weight: 900;
+            margin-left: .05rem;
+          }
+        }
+        .firstspan {
+          margin-top: 0.1rem;
         }
       }
       i{
