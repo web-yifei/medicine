@@ -5,7 +5,7 @@
         <i class="iconfont icon-compass"></i>
         <span>{{ name }}</span>
       </router-link>
-      <mt-search placeholder="输入你想搜索的关键字"> </mt-search>
+      <input type="text" placeholder="搜索" class="search"><button class="iconfont icon-search"></button>
 
       <router-link to="/city" tag="li" class="city ">
         <i class="iconfont icon-comments"></i>
@@ -13,17 +13,7 @@
       </router-link>
     </div>
     <div v-if="looplist.length">
-      <!-- <mt-swipe :auto="4000" v-if="looplist.length" :prevent='true'>
-      <mt-swipe-item v-for="data in looplist" :key="data.id">
-          <img :src="data.appImg" alt="">
-      </mt-swipe-item>
-    </mt-swipe> -->
-      <!-- <mt-swipe :auto="4000" :prevent='true'>
-      <mt-swipe-item v-for="data in looplist" :key="data.id">
-        <img :src="data.appImg" alt="">
-      </mt-swipe-item>
 
-    </mt-swipe> -->
       <swiper
         :options="options"
         v-if="looplist.length"
@@ -32,9 +22,10 @@
     class="loopswiper"
     classname="loopswiper"
       >
-        <div class="swiper-slide" v-for="data in looplist" :key="data.id">
-          <img :src="data.appImg" style="width:100%"/>
+        <div class="swiper-slide" v-for="data in looplist" :key="data._id">
+          <img :src="data.pic" style="width:100%"/>
           <!-- {{ data }} -->
+
         </div>
       </swiper>
     </div>
@@ -46,8 +37,8 @@
       <div
         class="swiper-slide nav"
         v-for="data in swiperlist"
-        :key="data.id"
-        
+        :key="data._id"
+
       >
         <img :src="data.icon" />
         <span>{{ data.name }}</span>
@@ -102,26 +93,11 @@ export default {
       text: "加载中...",
       spinnerType: "fading-circle"
     });
-    Axios({
-      url: "/front/handle/control.do",
-      method: "post",
-      data: {
-        biz_module: "herbBannerService",
-        biz_method: "queryBannerList",
-        biz_param: { type: 1 },
-        version: "3.10.0"
-      },
-      headers: {
-        "mg-client": "H5",
-        "X-Requested-With": "XMLHttpRequest",
-        "Content-Type": "application/json;charset=UTF-8"
-      }
-    }).then(res => {
-      // console.log(res.data.biz_result)
-      this.looplist = res.data.biz_result.list;
-      console.log(this.looplist,2222);
+    Axios.get('/api/slider').then(res => {
+      this.looplist = res.data.data;
       Indicator.close();
     });
+
     if(!localStorage.getItem("name")){
       this.name = "定位中.."
     }else{
@@ -129,29 +105,9 @@ export default {
       console.log(a);
       this.name = a;
     }
-      
 
-    Axios({
-      url: "/front/handle/control.do",
-      method: "post",
-      data: {
-        biz_module: "breedService",
-        biz_method: "hotDrugPropertiesInfo",
-        biz_param: { pn: 1, pSize: 10 },
-        biz_method: "hotDrugPropertiesInfo",
-        biz_module: "breedService",
-        biz_param: { pn: 1, pSize: 10 },
-        version: "3.10.0"
-      },
-      headers: {
-        "mg-client": "H5",
-        "X-Requested-With": "XMLHttpRequest",
-        "Content-Type": "application/json;charset=UTF-8"
-      }
-    }).then(res => {
-      // console.log(res.data.biz_result)
-      this.swiperlist = res.data.biz_result.list;
-      console.log(this.swiperlist);
+    Axios.get('/api/swiper').then(res => {
+      this.swiperlist = res.data.data;
     });
   }
 };
@@ -159,8 +115,8 @@ export default {
 <style lang="scss" scoped>
 .top {
   position: fixed;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
   background: white;
   width: 100%;
   height: 50px;
@@ -237,7 +193,7 @@ h3 {
   height: 0.4rem;
   line-height: 0.4rem;
   span {
-    border-left: 0.03rem solid #2b669a;
+    border-left: 0.03rem solid rgb(192, 163, 34);
     margin-left: 0.15rem;
     box-sizing: border-box;
     width: 50%;
@@ -246,5 +202,26 @@ h3 {
 }
 /deep/.swiper-pagination{
   text-align: center;
+}
+.search{
+  border-radius: .1rem;
+  border: 0;
+  padding: 0;
+  height: .3rem;
+  width: 2.3rem;
+  margin: 0 auto;
+  margin-top: .1rem;
+  padding: .1rem;
+  font-size: .12rem;
+  border:1px solid #ccc;
+  color: #999;
+}
+.icon-search{
+  position: fixed;
+  right: .9rem;
+  top: .15rem;
+  border: 0;
+  background: none;
+  padding: 0;
 }
 </style>

@@ -36,7 +36,6 @@
       mounted() {
           Axios.get(`/zixun/?rest_route=%2FgetCatTop%2FgetCatTop&cid=46&page=${this.page}&t=1573706706`).then(res => {
               let {list} = res.data.result;
-              console.log(list,456465)
               this.datalist = list;
           })
       },
@@ -70,7 +69,7 @@
     height: .4rem;
     line-height: .4rem;
     span {
-      border-left: .03rem solid #2b669a;
+      border-left: .03rem solid rgb(192, 163, 34);
       margin-left: .15rem;
       box-sizing: border-box;
       width: 50%;

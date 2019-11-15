@@ -1,10 +1,10 @@
 <template>
   <div>
-    <mt-header fixed title="问诊"></mt-header>
-    <swiper
-      :options="options"
-      v-if="looplist.length"
-      style="margin-top: .5rem;height: 1.69rem;
+      <mt-header fixed title="问诊"></mt-header>
+      <swiper
+        :options="options"
+        v-if="looplist.length"
+        style="margin-top: .5rem;
     width: 100%; background:pink;"
     >
       <div class="swiper-slide" v-for="(data, index) in looplist" :key="index">
@@ -27,6 +27,7 @@ import Vue from "vue";
 import Axios from "axios";
 import DignoseBar from "@/views/Dignose/DignoseBar";
 import Tuijian from "@/views/Dignose/Tuijian";
+import {Indicator} from 'mint-ui'
 Vue.component(Header.name, Header);
 export default {
   data() {
@@ -50,15 +51,18 @@ export default {
     DignoseBar,
     Tuijian
   },
-  mounted() {
-    Axios.get("/api/docSwiper/swiper").then(res => {
-      let { pic } = res.data;
-      this.looplist = pic;
-    });
-  },
-  methods:{
+    mounted(){
+      Indicator.open({
+          text: "加载中...",
+          spinnerType: "fading-circle"
+      });
+      Axios.get('/api/docSwiper/swiper').then(res => {
+          let {pic} = res.data
+          this.looplist = pic;
+          Indicator.close();
+      })
+    },
 
-  },
   // handleClick(id){
 
   // }

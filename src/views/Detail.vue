@@ -1,54 +1,42 @@
 <template>
   <body>
-    <div>
+    <div v-if="info">
       <!-- 详情
         <button @click="handleClick">加入购物车</button>
         <router-link to="/classify"><button>返回</button></router-link> -->
-      <mt-header title="人参|商品详情">
+      <mt-header title="商品详情">
         <router-link to="/classify" slot="left">
           <mt-button icon="back"></mt-button>
         </router-link>
       </mt-header>
 
       <swiper :options="options" v-if="looplist.length">
-        <div class="swiper-slide" v-for="data in looplist" :key="data.id">
-          <!-- <img :src="data.appImg" /> -->{{ data }}
+        <div class="swiper-slide" v-for="data in looplist" :key="data._id">
+           <img :src="data.pic" />
         </div>
       </swiper>
       <section>
         <ul>
           <li>
-            <div>￥99</div>
+            <div>{{info.price}}</div>
           </li>
           <li>
-            <div>[限时优惠] 长白山人参东北吉林特产</div>
-            <div>Changbai mountain ginseng northeast jilin specialty</div>
+            <div>[限时优惠] {{info.shop_name}}</div>
+            <div>{{info.eName}}</div>
           </li>
           <li>
             <div>
               <p>商品详情<i></i></p>
-
               <p>药材形状:</p>
-              <span
-                >啧啧啧啧啧啧做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做做</span
-              >
+              <span>{{info.shape}}</span>
               <p>性味</p>
-              <span
-                >开发技术大闺女觉得发多少胜读十年书女警加父史蒂芬霍金收到回复会计师少时诵诗书所所所所所所所所所</span
-              >
+              <span>{{info.note}}</span>
               <p>用量</p>
-              <span
-                >计划分开始放假的室内空间富家大室客户反馈副书记的看法和肯定健身房发送到付款计划少时诵诗书所所所所所所所所所</span
-              >
+              <span>一次{{info.weight}}</span>
               <p>储藏方式</p>
-              <span
-                >发你的苏菲的世界法律的及时了解到了数据绿地少时诵诗书所所所所所所所所所</span
-              >
+              <span>{{info.store}}</span>
               <p>产地</p>
-              <span
-                >但是厉害把大家来看V领空吗把酷酷的就是覅角度讲法律的数据库抵抗力差
-                少时诵诗书所所所所所所所所所</span
-              >
+              <span>{{info.producingArea}}</span>
             </div>
           </li>
         </ul>
@@ -93,24 +81,30 @@
 </template>
 <script>
 import swiper from "@/components/swiper";
-import { Header } from "mint-ui";
-import Vue from "vue";
+import Axios from 'axios'
 export default {
   mounted() {
     this.$store.commit("hideTabbar");
-    console.log("detail beforeCreate");
+    console.log(this.$route.params.shopid)
+    Axios.get("/api/shop/shopDetail",{params:{id:this.$route.params.shopid}}).then(res => {
+        this.info = res.data[0]
+        console.log(this.info)
+    })
+      Axios.get("/api/shop/shopSwiper",{params:{id:this.$route.params.shopid}}).then(res => {
+          console.log(res.data,4565)
+          this.looplist = res.data
+      })
   },
   destroyed() {
     this.$store.commit("showTabbar");
-    console.log("detail destoryed");
   },
   components: {
     swiper
   },
   data() {
     return {
-      looplist: ["1", "2", "3", "4"],
-
+      looplist: [],
+        info:"",
       options: {
         // direction: 'vertical',
         loop: true,
@@ -246,7 +240,7 @@ aside {
     text-align: center;
     font-size: 0.2rem;
     line-height: 0.5rem;
-    outline: none; 
+    outline: none;
     border: 1px solid transparent;
     border-radius: .05rem;
   }
