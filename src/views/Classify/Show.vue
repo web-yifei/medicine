@@ -3,46 +3,30 @@
         <div>
             <h4>气血不足</h4>
             <ul>
-                <li>
-                    <div class="img"></div>
-                    <p>人参</p>
-                </li>
-                <li>
-                    <div class="img"></div>
-                    <p>人参</p>
-                </li>
-                <li>
-                    <div class="img"></div>
-                    <p>人参</p>
-                </li>
-                <li>
-                    <div class="img"></div>
-                    <p>人参</p>
-                </li>
-                <li>
-                    <div class="img"></div>
-                    <p>人参</p>
-                </li>
-                <li>
-                    <div class="img"></div>
-                    <p>人参</p>
-                </li>
-                <li>
-                    <div class="img"></div>
-                    <p>人参</p>
+                <li v-for="item of datalist" :key="item.id">
+                  <img :src="item.pic" alt="">
+                    <p>{{item.shop_name}}</p>
                 </li>
             </ul>
         </div>
     </div>
 </template>
 <script>
+  import Axios from 'axios'
 export default {
+      data(){
+          return {
+              datalist:[]
+          }
+      },
     mounted() {
     },
     watch: {
         $route(){
             let { name } = this.$route.query;
-            console.log(name);
+            Axios.get('/api/shop/shoplist',{params:{name}}).then(res => {
+                this.datalist = res.data
+            })
         }
     },
     props:{
@@ -75,7 +59,7 @@ export default {
                 li{
                     width: 30%;
                     height: .85rem;
-                    .img{
+                    img{
                         width: 100%;
                         height: 80%;
                         background-color: pink;

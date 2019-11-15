@@ -11,7 +11,7 @@ module.exports = {
         changeOrigin: true
       },
       "/api": {
-        target: "http://localhost:3000",
+        target: "http://10.2.153.48:3000",
         changeOrigin: true
       },
       "/ajax": {
