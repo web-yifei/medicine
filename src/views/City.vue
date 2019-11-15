@@ -1,7 +1,6 @@
 <template>
     <div>
 
-        <!-- <Header :options="options"></Header> -->
         <mt-header title="城市">
             <router-link to="/" slot="left">
                 <mt-button icon="back"></mt-button>
@@ -18,23 +17,12 @@
 </template>
 <script>
 import Axios from 'axios'
-// import Header from '@/components/Header'
 export default {
     data(){
         return{
             datalist:[],
             indexHeight:'0',
-        //     options:{
-        //         content:'返回',
-        //         style:{
-        //             backgroundColor:'#fff',
-        //             color:'black',
-        //             height:'.5rem',
-        //             marginBotton:'.1rem',
-        //             borderBottom:'1px solid #ccc',
-        //             fontsize:'.2rem;'
-        //         }
-        //   }
+
         }
     },
     components:{
@@ -53,7 +41,6 @@ export default {
             for(var i=0;i<res.data.data.cities.length; i++){
                 var a = res.data.data.cities[i].cityId 
                 // console.log(a);                     
-                // return a;
             this.datalist = this.handleCity(res.data.data.cities)
             }
         })
