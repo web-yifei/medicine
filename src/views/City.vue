@@ -8,7 +8,7 @@
             </router-link>
         </mt-header>
         <mt-index-list :style="{height:indexHeight}">
-            
+
             <mt-index-section :index="data.type" v-for="data in datalist" :key="data.type">
                 <mt-cell :title="item.name" v-for="item in data.city" :key="item.cityId" @click.native="handleClick(item)"></mt-cell>
             </mt-index-section>
@@ -24,21 +24,10 @@ export default {
         return{
             datalist:[],
             indexHeight:'0',
-        //     options:{
-        //         content:'返回',
-        //         style:{
-        //             backgroundColor:'#fff',
-        //             color:'black',
-        //             height:'.5rem',
-        //             marginBotton:'.1rem',
-        //             borderBottom:'1px solid #ccc',
-        //             fontsize:'.2rem;'
-        //         }
-        //   }
         }
     },
     components:{
-    
+
     },
     mounted(){
         this.indexHeight = document.documentElement.clientHeight - 50+"px"
@@ -49,11 +38,8 @@ export default {
                 'X-Host': 'mall.film-ticket.city.list'
             }
         }).then(res=>{
-            // console.log(res.data.data.cities);
             for(var i=0;i<res.data.data.cities.length; i++){
-                var a = res.data.data.cities[i].cityId 
-                // console.log(a);                     
-                // return a;
+                var a = res.data.data.cities[i].cityId
             this.datalist = this.handleCity(res.data.data.cities)
             }
         })
