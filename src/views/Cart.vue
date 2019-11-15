@@ -6,65 +6,99 @@
        <!-- <router-link to="/calc"><button>结算</button></router-link> -->
       </header>
         <h4>购物车</h4>
-        <h4 class="thing">共三件物品</h4>
+        <h4 class="thing">共{{shopList.length}}件物品</h4>
       <nav>
-      <main>
-        <input type="radio">
+      <main v-for="(data,index) in shopList" :key="index" >
+        <input type="checkbox" @change="changeOne" v-model="checkarr" :value="data">
+        <button class="del iconfont icon-close"  @click="delClick(index)"></button>
         <div>
            <img src="" alt="">
-           <p>长白山人参东北吉林特产长白山人参东北吉林特产</p>
-           <span>￥99</span>
+           <p>{{data.name}}</p>
+           <span>￥{{data.price}}</span>
            <div>
-           <button class="dec">-</button>
-           <span>3</span>
-           <button class="add">+</button>
+           <button class="dec" @click="dec(data)">-</button>
+           <span>{{data.count}}</span>
+           <button class="add" @click="add(data)">+</button>
            </div>
         </div>
       </main>
-
-       <main>
-        <input type="radio">
-        <div>
-           <img src="" alt="">
-           <p>长白山人参东北吉林特产长白山人参东北吉林特产</p>
-           <span>￥99</span>
-           <div>
-           <button class="dec">-</button>
-           <span>3</span>
-           <button class="add">+</button>
-           </div>
-        </div>
-      </main>
-
-       <main>
-        <input type="radio">
-        <div>
-           <img src="" alt="">
-           <p>长白山人参东北吉林特产长白山人参东北吉林特产</p>
-           <span>￥99</span>
-           <div>
-           <button class="dec">-</button>
-           <span>3</span>
-           <button class="add">+</button>
-           </div>
-        </div>
-      </main>
+  
       </nav>
       <footer>
           <div>
-             <input type="radio">
+             <input type="checkbox" v-model="checkAll" @change="change">
              <span>全选</span>
           </div>
-          <p>合计： <span>￥</span>0</p>
+          <p>合计： <span>￥</span>{{sum()}}</p>
           <router-link to="/calc" tag="button">结算</router-link>
       </footer>
     </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      checkAll:false,
+      isshow:true,
+      checkarr:[],
+      shopList:[
+        {
+          "id":1,
+          "name":"长白山人参东北吉林特产长白山人参东北吉林特产",
+          "count":4,
+          "price":99,
+          "img":"",
+        },
+        {
+          "id":2,
+          "name":"长白山人参东北吉林特产长白山人参东北吉林特产",
+          "count":2,
+          "price":99,
+          "img":"",
+
+        }
+      ]
+    }
+  },
   methods: {
     handleClick () {
         this.$router.back();
+    },
+    delClick(index){
+      // console.log(this.shopList[index]);
+      this.shopList.splice(this.shopList[index],1);
+      
+    },
+    changeOne(){
+  
+      if(this.checkarr.length === this.shopList.length){
+        this.checkAll = true;
+      }else{
+        this.checkAll= false;
+      }
+    },
+    change(){
+      if(this.checkAll){
+        this.checkarr = this.shopList
+      }else{
+        this.checkarr = [];
+      }
+    },
+    add(data){
+      data.count++;
+    },
+    dec(data){
+      data.count--;
+      if(data.count <= 0){
+        data.count =1;
+      }
+    },
+    sum(){
+      var sum = 0;
+      for(let i in this.checkarr){
+        sum += this.checkarr[i].count * this.checkarr[i].price;
+      }
+      return sum;
     }
   },
   mounted() {
@@ -76,11 +110,13 @@ export default {
     console.log('cart beforeDestroyed');
     
   },
+ 
 }
 </script>
 <style lang="scss" scoped>
    body{
       position: relative;
+      
     header{
       height: 1.5rem;
       background: rgb(236, 84, 89);
@@ -163,6 +199,17 @@ export default {
       width:90%;
       top: 1rem;
       left: .18rem;
+      .del{
+        position: absolute;
+        top: .1rem;
+        left: .16rem;
+        color: rgb(236, 84, 89);
+        font-weight: 900;
+        padding: 0;
+        border: 0;
+        background: none;
+        outline: none;
+      }
       main{
         height: 1.5rem;
         width: 100%;
@@ -172,6 +219,7 @@ export default {
         border-radius: .1rem;
         border: 1px solid #ccc;
         position: relative;
+        
       input{
         border: 0;
         position: absolute;

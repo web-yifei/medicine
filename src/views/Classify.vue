@@ -1,10 +1,7 @@
 <template>
   <div :style="clientHeight">
-    <mt-header fixed title="分类" class="header">
-      <router-link to="/index" slot="left">
-        <mt-button icon="back"></mt-button>
-      </router-link>
-    </mt-header>
+
+    <mt-header fixed title="分类"></mt-header>
     <ClassifyBar></ClassifyBar>
     <router-view></router-view>
   </div>
@@ -29,9 +26,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.header {
-  box-shadow: 0 0.01rem 0.03rem;
-  background-color: #fff;
-  color: #3e3e3e;
+header {
+  background: #c0a322;
+  width: 100%;
+  font-size: 0.18rem;
+  height: 0.5rem;
 }
 </style>

@@ -132,7 +132,10 @@
           }
           i {
             display: inline;
-            color: #ff9800;
+            color: rgb(192, 163, 34);
+            font-style: normal;
+            font-weight: 900;
+            margin-left: .05rem;
           }
         }
         .firstspan {

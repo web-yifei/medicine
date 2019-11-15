@@ -19,6 +19,7 @@ import CalcSuccess from '@/views/CalcSuccess'
 import SubmitSuccess from "@/views/SubmitSuccess"
 import Show from "@/views/Classify/Show"
 import Hot from '@/views/Index/Hot'
+import History from '@/views/My/History'
 Vue.use(VueRouter)
 
 const routes = [
@@ -69,7 +70,7 @@ const routes = [
   },
   {
     path: '/calc',
-    component: Calc
+    component: CalcSuccess
   },
   {
     path: '/doctors',
@@ -96,11 +97,11 @@ const routes = [
     component:Hot
   },
   {
-    path:'/calcsuccess',
-    component:CalcSuccess
+    path:'/my/history',
+    component:History
   },
   {
-    path:'/submitSuccess',
+    path:'/sub',
     component:SubmitSuccess
   },
 
