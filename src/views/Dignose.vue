@@ -82,7 +82,6 @@ header {
 .line {
   left: .11rem;
   top: 4.37rem;
-
   border: 1px solid rgba(187, 187, 187, 1);
   height: 1px;
   margin-left: 0.1rem;
