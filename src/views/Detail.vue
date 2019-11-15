@@ -5,8 +5,8 @@
         <button @click="handleClick">加入购物车</button>
         <router-link to="/classify"><button>返回</button></router-link> -->
       <mt-header title="商品详情">
-        <router-link to="/classify" slot="left">
-          <mt-button icon="back"></mt-button>
+        <router-link to slot="left">
+          <mt-button icon="back" @click="$router.go(-1)"></mt-button>
         </router-link>
       </mt-header>
 
@@ -82,13 +82,19 @@
 <script>
 import swiper from "@/components/swiper";
 import Axios from 'axios'
+import {Indicator} from 'mint-ui'
 export default {
   mounted() {
+      Indicator.open({
+          text: "加载中...",
+          spinnerType: "fading-circle"
+      });
     this.$store.commit("hideTabbar");
     console.log(this.$route.params.shopid)
     Axios.get("/api/shop/shopDetail",{params:{id:this.$route.params.shopid}}).then(res => {
         this.info = res.data[0]
         console.log(this.info)
+        Indicator.close()
     })
       Axios.get("/api/shop/shopSwiper",{params:{id:this.$route.params.shopid}}).then(res => {
           console.log(res.data,4565)

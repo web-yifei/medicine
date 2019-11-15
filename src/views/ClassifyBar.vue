@@ -16,7 +16,9 @@
 </template>
 <script>
 export default {
-    
+  mounted() {
+      this.$router.push('/classify/show?name=全部')
+  }
 }
 </script>
 <style lang="scss" scoped>

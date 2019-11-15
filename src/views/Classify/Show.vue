@@ -3,7 +3,7 @@
         <div>
             <h4>气血不足</h4>
             <ul>
-                <li v-for="item of datalist" :key="item.id">
+                <li v-for="item of datalist" :key="item.id" @click="detailClick(item.id)">
                   <img :src="item.pic" alt="">
                     <p>{{item.shop_name}}</p>
                 </li>
@@ -13,6 +13,7 @@
 </template>
 <script>
   import Axios from 'axios'
+  import {Indicator} from 'mint-ui'
 export default {
       data(){
           return {
@@ -20,13 +21,38 @@ export default {
           }
       },
     mounted() {
+        Indicator.open({
+            text: "加载中...",
+            spinnerType: "fading-circle"
+        });
+        Axios.get('/api/shop/shoplist').then(res => {
+            this.datalist = res.data
+            Indicator.close();
+        })
+    },
+    methods:{
+      detailClick(id){
+          this.$router.push(`/detail/${id}`)
+      }
     },
     watch: {
         $route(){
+            Indicator.open({
+                text: "加载中...",
+                spinnerType: "fading-circle"
+            });
             let { name } = this.$route.query;
-            Axios.get('/api/shop/shoplist',{params:{name}}).then(res => {
-                this.datalist = res.data
-            })
+            if (name === '全部' || name === '常用药材'){
+                Axios.get('/api/shop/shoplist').then(res => {
+                    this.datalist = res.data
+                    Indicator.close();
+                })
+            }else{
+                Axios.get('/api/shop/shoplist',{params:{name}}).then(res => {
+                    this.datalist = res.data
+                    Indicator.close();
+                })
+            }
         }
     },
     props:{

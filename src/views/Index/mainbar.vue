@@ -1,5 +1,5 @@
 <template>
-    <div class="body">
+    <div class="yangsheng" ref="yangsheng">
         <h3> <span>养生贴士</span> <span class="more">更多></span></h3>
         <div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-immediate-check="false" infinite-scroll-distance="10">
           <dl v-for="item of datalist" :key="item.ID" @click="linkHandle(item.guid)">
@@ -38,6 +38,19 @@
               let {list} = res.data.result;
               this.datalist = list;
           })
+          window.onscroll = () => {
+              if (this.$refs.yangsheng.getBoundingClientRect().top <= 45){
+                  this.$refs.yangsheng.children[0].style.position='fixed'
+                  this.$refs.yangsheng.children[0].style.top='.45rem'
+                  this.$refs.yangsheng.children[0].style.backgroundColor='#fff'
+                  this.$refs.yangsheng.children[0].style.width='100%'
+              }else{
+                  this.$refs.yangsheng.children[0].style.position='initial'
+              }
+          }
+      },
+      destroyed(){
+          window.onscroll = null
       },
       methods:{
           loadMore(){
@@ -60,7 +73,7 @@
   }
 </script>
 <style lang="scss" scoped>
-  div.body{
+  div.yangsheng{
     margin-top: .2rem;
     border-top: 0.05rem solid #dedede;
     margin-bottom: .5rem;
@@ -74,6 +87,7 @@
       box-sizing: border-box;
       width: 50%;
       padding-left: .06rem;
+      /*position: initial;*/
     }
     .more{
       border: none;

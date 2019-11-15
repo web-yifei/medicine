@@ -80,8 +80,8 @@ header {
 }
 
 .line {
-  left: 11px;
-  top: 437px;
+  left: .11rem;
+  top: 4.37rem;
 
   border: 1px solid rgba(187, 187, 187, 1);
   height: 1px;
@@ -90,7 +90,7 @@ header {
 }
 .recommend {
   width: 100%;
-  height: 20px;
+  height: .20rem;
   color: rgba(16, 16, 16, 1);
   font-size: 14px;
   text-align: center;
