@@ -18,6 +18,7 @@ import Amend from '@/views/Amend'
 import CalcSuccess from '@/views/CalcSuccess'
 import SubmitSuccess from "@/views/SubmitSuccess"
 import Show from "@/views/Classify/Show"
+import Hot from '@/views/Index/Hot'
 Vue.use(VueRouter)
 
 const routes = [
@@ -91,6 +92,10 @@ const routes = [
     component: Amend
   },
   {
+    path:'/hot',
+    component:Hot
+  },
+  {
     path:'/calcsuccess',
     component:CalcSuccess
   },
@@ -98,7 +103,7 @@ const routes = [
     path:'/submitSuccess',
     component:SubmitSuccess
   },
-  
+
   {
     path: '*',
     redirect: '/index'

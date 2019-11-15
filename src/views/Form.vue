@@ -1,7 +1,6 @@
 <template>
     <div class="body">
         <mt-header fixed title="问诊表">
-
                 <mt-button icon="back" slot="left" @click="handleClick"></mt-button>
         </mt-header>
   
@@ -70,8 +69,23 @@
               <el-radio label="否"></el-radio>
             </el-radio-group>
           </el-form-item>
+
+          
+          <el-upload
+            class="upload-demo"
+            action="https://jsonplaceholder.typicode.com/posts/"
+            :on-success="handleSuccess"
+            :on-remove="handleRemove"
+            :before-remove="beforeRemove"
+            multiple
+            :limit="3"
+            :on-exceed="handleExceed"
+            v-model="fileList">
+            <el-button size="small" type="primary">点击上传</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+          </el-upload>
       </el-form>
-        <button class="commit">提交</button>
+        <button class="commit" @click="getAll">提交</button>
    
     </div>
 
@@ -94,24 +108,47 @@ export default {
           smoke:[],
           habit:"",
           chest:"",
-        }
+        },
+         fileList: []
       }
     },
   methods: {
     handleClick () {
       this.router.back();
     },
+    getAll(){
+      console.log(this.fileList);
+      
+    },
+    handleRemove(file, fileList) {
+      this.fileList.remove(file);
+      console.log(this.fileList);
+    },
+    handleSuccess(response, file, fileList) {
+      this.fileList.push(file);
+      console.log(this.fileList);
+
+    },
+    handleExceed(files, fileList) {
+      this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+    },
+    beforeRemove(file, fileList) {
+      return this.$confirm(`确定移除 ${ file.name }？`);
+    }
      
   },
   beforeMount () { 
      this.$store.commit('hideTabbar')
   },
-    beforeDestroy () { 
+  beforeDestroy () { 
      this.$store.commit('showTabbar')
   },
 }
 </script>
 <style lang="scss">
+  .el-message-box{
+      width: 3.35rem !important;
+   }
   .body{
      background: #fff;
       position: relative;
@@ -167,6 +204,7 @@ export default {
     }
     form{
       width: 90%;
+      height:10.5rem;
       border-radius: 5px;
       border: 1px solid #ccc;
       margin: 0 auto;
@@ -191,7 +229,17 @@ export default {
         /deep/.el-checkbox__inner{
           position: static;
         }
+        /deep/.upload-demo{
+          width: 90%;
+          margin: 0 auto;
+        }  
+        /deep/.el-button--primary{
+          background:rgb(236, 84, 89);
+          border: 0;
+
+        }
     }
   }
+   
   
 </style>

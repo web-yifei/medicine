@@ -5,7 +5,7 @@
         <i class="iconfont icon-compass"></i>
         <span>{{ name }}</span>
       </router-link>
-      <mt-search placeholder="输入你想搜索的关键字"> </mt-search>
+      <input type="text" placeholder="搜索" class="search"><button class="iconfont icon-search"></button>
 
       <router-link to="/city" tag="li" class="city ">
         <i class="iconfont icon-comments"></i>
@@ -13,17 +13,7 @@
       </router-link>
     </div>
     <div v-if="looplist.length">
-      <!-- <mt-swipe :auto="4000" v-if="looplist.length" :prevent='true'>
-      <mt-swipe-item v-for="data in looplist" :key="data.id">
-          <img :src="data.appImg" alt="">
-      </mt-swipe-item>
-    </mt-swipe> -->
-      <!-- <mt-swipe :auto="4000" :prevent='true'>
-      <mt-swipe-item v-for="data in looplist" :key="data.id">
-        <img :src="data.appImg" alt="">
-      </mt-swipe-item>
 
-    </mt-swipe> -->
       <swiper
         :options="options"
         v-if="looplist.length"
@@ -35,6 +25,7 @@
         <div class="swiper-slide" v-for="data in looplist" :key="data._id">
           <img :src="data.pic" style="width:100%"/>
           <!-- {{ data }} -->
+
         </div>
       </swiper>
     </div>
@@ -202,7 +193,7 @@ h3 {
   height: 0.4rem;
   line-height: 0.4rem;
   span {
-    border-left: 0.03rem solid #2b669a;
+    border-left: 0.03rem solid rgb(192, 163, 34);
     margin-left: 0.15rem;
     box-sizing: border-box;
     width: 50%;
@@ -211,5 +202,26 @@ h3 {
 }
 /deep/.swiper-pagination{
   text-align: center;
+}
+.search{
+  border-radius: .1rem;
+  border: 0;
+  padding: 0;
+  height: .3rem;
+  width: 2.3rem;
+  margin: 0 auto;
+  margin-top: .1rem;
+  padding: .1rem;
+  font-size: .12rem;
+  border:1px solid #ccc;
+  color: #999;
+}
+.icon-search{
+  position: fixed;
+  right: .9rem;
+  top: .15rem;
+  border: 0;
+  background: none;
+  padding: 0;
 }
 </style>
