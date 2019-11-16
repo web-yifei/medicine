@@ -2,7 +2,7 @@
     <div class="body" :style="clientHeight">
       <Header :options="options"></Header>
       <Title class="title"></Title>
-      <Item></Item>  
+      <Item></Item>
     </div>
 </template>
 <script>

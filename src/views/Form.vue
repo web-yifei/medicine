@@ -124,11 +124,14 @@ export default {
     },
   methods: {
     getAll(){
-      console.log(typeof this.age);
       Axios.post("/api/question/info",{params:{
           name:this.name,sex:this.sex,age:this.age,history:this.history,feel:this.feel,perspire:this.perspire,hurt:this.hurt,shit:this.shit,smoke:this.smoke,habit:this.habit,chest:this.chest,id:this.questionId,doctorId:this.$route.params.doctorId,userId:this.userId
           }}).then(res => {
-              console.log(res.data)
+              if (res.data.update === 1){
+                  MessageBox.alert('提交成功').then(iii=>{
+                      this.$router.push('/message')
+                  })
+              }
       })
     },
       backClick(){

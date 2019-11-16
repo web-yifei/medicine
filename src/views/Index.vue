@@ -5,7 +5,7 @@
         <i class="iconfont icon-compass"></i>
         <span>{{ name }}</span>
       </router-link>
-      <input type="text" placeholder="搜索" class="search"><button class="iconfont icon-search"></button>
+      <input type="text" placeholder="搜索" class="search" v-model="search"><button class="iconfont icon-search"></button>
 
       <router-link to="/city" tag="li" class="city ">
         <i class="iconfont icon-comments"></i>
@@ -61,6 +61,7 @@ Vue.component(SwipeItem.name, SwipeItem);
 export default {
   data() {
     return {
+        search:'',
       looplist: [],
       swiperlist: [],
       name: "",

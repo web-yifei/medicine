@@ -29,6 +29,8 @@
       <h3>公告</h3>
       <p>全天9：00～17：00均可留言(所填内容需真实客观,其将用于中医辨证分型及处方用药)</p>
     </div>
+
+    <video :src="'http://10.2.153.48:3000'+data.viedo" v-if="data.viedo" controls autoplay height="600"></video>
         <button class="commit" @click="liuyan()">立即留言</button>
   </div>
 </template>
@@ -77,6 +79,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+  video{
+    width: 100%;
+    margin-bottom: .45rem;
+  }
 .Indications,
 .briefIntroduction,
 .DoctorServices,

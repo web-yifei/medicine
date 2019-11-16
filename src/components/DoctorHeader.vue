@@ -78,10 +78,13 @@ export default {
         div.content{
             padding: .15rem .25rem;
             div{
-                padding:.15rem 0;
+                padding:.15rem;
                 border: .01rem solid #ccc;
                 text-align: center;
             }
+          li{
+            text-align: left;
+          }
         }
 
 

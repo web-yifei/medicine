@@ -9,7 +9,7 @@
     >
       <div class="swiper-slide" v-for="(data, index) in looplist" :key="index">
         <!-- <img :src="data.appImg" /> -->
-        <img :src="data.pic" alt="" class="img" />
+        <img :src="'http://10.2.153.48:3000'+data.pic" alt="" class="img" />
       </div>
     </swiper>
 

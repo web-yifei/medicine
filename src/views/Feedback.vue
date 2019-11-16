@@ -5,7 +5,7 @@
             <mt-button icon="back"></mt-button>
           </router-link>
         </mt-header>
-        <Title class="title"></Title>
+<!--        <Title class="title"></Title>-->
         <DoctorHeader class="doctor" :info="info" xxx="xx" v-if="info.length"></DoctorHeader>
         <mt-button type="default" size="large" class="btn" @click="backHandle()">返回首页</mt-button>
         <mt-button type="danger" size="large" class="btn" @click="saveHandle">抓药</mt-button>
@@ -15,6 +15,7 @@
 import Title from '@/views/My/Title'
 import DoctorHeader from '@/components/DoctorHeader'
 import Axios from 'axios'
+import {Indicator} from 'mint-ui'
 export default {
   data() {
     return {
@@ -24,11 +25,16 @@ export default {
         info:[]
     }
   },
-  components: { Title, DoctorHeader },
+  components: { DoctorHeader },
   mounted() {
     this.clientHeight.height=document.documentElement.innerHeight-0.5+'rem'
+      Indicator.open({
+          text: "加载中...",
+          spinnerType: "fading-circle"
+      });
       Axios.get('/api/feedback/list',{params:{id:this.$store.state.my_title.Id}}).then(res => {
           this.info = res.data
+          Indicator.close()
       })
   },
   methods: {
@@ -65,6 +71,7 @@ div{
   }
   .doctor{
     border-top: .01rem solid #ccc;
+    margin-top: .5rem;
   }
 }
 

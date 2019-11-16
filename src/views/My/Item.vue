@@ -1,6 +1,6 @@
 <template>
     <ul>
-        <li>问诊记录 <span class="iconfont icon-more"></span></li>
+        <li @click="history">问诊记录 <span class="iconfont icon-more"></span></li>
         <li @click="feedClick">问诊反馈 <span class="iconfont icon-more"></span></li>
         <li>订单记录 <span class="iconfont icon-more"></span></li>
         <li @click="amendClick">修改密码 <span class="iconfont icon-more"></span></li>
@@ -21,6 +21,9 @@ export default {
             console.log(res.data);
             let { id } = res.data
             this.$router.push(`/amend/${id}`)
+        },
+        history(){
+            this.$router.push('/my/history')
         }
     },
 }

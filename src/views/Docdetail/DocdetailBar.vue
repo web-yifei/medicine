@@ -1,7 +1,7 @@
 <template>
     <div class="body">
         <div class="head">
-            
+
             <!-- <router-link to="/message" tag="span"><span class="message"></span></router-link> -->
             <div class="img">
                 <img :src="info.pic" alt="">
@@ -11,14 +11,14 @@
                 <div> <span>{{info.level}}</span> <span>{{info.department}}</span></div>
             </div>
         </div>
-        
+
     </div>
 </template>
 <script>
 import Axios from 'axios'
 export default {
     methods: {
-        
+
     },
     data() {
         return {
@@ -28,19 +28,19 @@ export default {
       mounted() {
     console.log()
     Axios.get("/api/doctor/list",{params:{id:this.$route.params.doctorId}}).then(res=>{
-      
+
       this.info = res.data.data[0]
         console.log(this.info);
-        
+
     //   this.datalist = data;
     //   console.log(datalist);
-      
+
     //   this.name = data[0].name;
     //   this.level= data[0].level;
     //   this.department = data[0].department;
     //   this.src = data[0].pic;
     //   console.log(this.src);
-      
+
     })
   },
 
@@ -62,6 +62,7 @@ export default {
                 width: .72rem;
                 img{
                     width: 100%;
+                    height: 100%;
                     border-radius: 50%;
                 }
             }
@@ -91,8 +92,8 @@ export default {
                 text-align: center;
             }
         }
-        
-        
+
+
     }
-   
+
 </style>
