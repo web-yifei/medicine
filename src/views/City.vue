@@ -1,7 +1,6 @@
 <template>
     <div>
 
-        <!-- <Header :options="options"></Header> -->
         <mt-header title="城市">
             <router-link to="/" slot="left">
                 <mt-button icon="back"></mt-button>
@@ -18,7 +17,6 @@
 </template>
 <script>
 import Axios from 'axios'
-// import Header from '@/components/Header'
 export default {
     data(){
         return{
