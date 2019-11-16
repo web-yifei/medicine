@@ -18,6 +18,11 @@ export default new Vuex.Store({
       state.my_title.headName = params.username
       state.my_title.Id = params.id
     },
+    deleteInfo(state){
+      state.my_title.headPic = ''
+      state.my_title.headName = ''
+      state.my_title.Id = ''
+    },
     showTabbar (state) {
       state.isTabbarShow = true
     },

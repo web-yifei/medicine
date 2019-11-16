@@ -1,6 +1,6 @@
 <template>
     <div>
-      
+
       <header>
        <span @click="handleClick" class="iconfont icon-back"></span>
        <!-- <router-link to="/calc"><button>结算</button></router-link> -->
@@ -8,21 +8,22 @@
         <h4>购物车</h4>
         <h4 class="thing">共{{shopList.length}}件物品</h4>
       <nav>
-      <main v-for="(data,index) in shopList" :key="index" >
+      <main v-for="(data,index) in shopList" :key="data._id" >
         <input type="checkbox" @change="changeOne" v-model="checkarr" :value="data">
-        <button class="del iconfont icon-close"  @click="delClick(index)"></button>
+        <button class="del iconfont icon-close"  @click="delClick(data.id,index)"></button>
         <div>
-           <img src="" alt="">
-           <p>{{data.name}}</p>
-           <span>￥{{data.price}}</span>
+           <img :src="data.pic" alt="">
+           <p>{{data.shop_name}}</p>
+            <p class="prop">{{data.prop | filterProp}}</p>
+           <span>{{data.price | filterPrice}}</span>
            <div>
            <button class="dec" @click="dec(data)">-</button>
-           <span>{{data.count}}</span>
+           <span>{{data.num}}</span>
            <button class="add" @click="add(data)">+</button>
            </div>
         </div>
       </main>
-  
+
       </nav>
       <footer>
           <div>
@@ -35,42 +36,49 @@
     </div>
 </template>
 <script>
+  import Axios from 'axios'
 export default {
   data() {
     return {
       checkAll:false,
       isshow:true,
       checkarr:[],
-      shopList:[
-        {
-          "id":1,
-          "name":"长白山人参东北吉林特产长白山人参东北吉林特产",
-          "count":4,
-          "price":99,
-          "img":"",
-        },
-        {
-          "id":2,
-          "name":"长白山人参东北吉林特产长白山人参东北吉林特产",
-          "count":2,
-          "price":99,
-          "img":"",
-
-        }
-      ]
+      shopList:[],
+        prev:"",
+        timeId:""
     }
   },
+    filters:{
+        filterPrice(value){
+            return value.replace(/\/500g/i,'')
+        },
+        filterProp(value){
+            return value.split("、").slice(0,2).join("、")
+        }
+    },
   methods: {
     handleClick () {
         this.$router.back();
     },
-    delClick(index){
+    delClick(id){
       // console.log(this.shopList[index]);
-      this.shopList.splice(this.shopList[index],1);
-      
+
+        console.log(id)
+        Axios({
+            method:'delete',
+            url:'/api/cart/delete',
+            data:{
+                id:id
+            }
+        }).then(res => {
+            console.log(res.data)
+            if (res.data === 1){
+                this.shopList.splice(index,1);
+            }
+        })
     },
     changeOne(){
-  
+
       if(this.checkarr.length === this.shopList.length){
         this.checkAll = true;
       }else{
@@ -85,38 +93,92 @@ export default {
       }
     },
     add(data){
-      data.count++;
+      data.num++;
+
+      if (this.prev && Date.now()-this.prev<1000){
+          this.prev = Date.now()
+          clearTimeout(this.timeid)
+          this.timeid = setTimeout(()=>{
+              Axios({
+                  method:'post',
+                  url:'/api/cart/update',
+                  data:{
+                      userId:this.$route.params.userid,
+                      shopid:data.id,
+                      num:data.num
+                  }
+              }).then(res => {
+                  console.log(res.data)
+              })
+          },1000)
+      }else{
+          this.prev = Date.now()
+          this.timeid = setTimeout(()=>{
+            console.log(111)
+              Axios({
+                  method:'post',
+                  url:'/api/cart/update',
+                  data:{
+                      userId:this.$route.params.userid,
+                      shopid:data.id,
+                      num:data.num
+                  }
+              }).then(res => {
+                  console.log(res.data)
+              })
+          },1000)
+      }
+
+
     },
     dec(data){
-      data.count--;
+      data.num--;
       if(data.count <= 0){
         data.count =1;
       }
     },
     sum(){
       var sum = 0;
+      console.log(this.checkarr)
       for(let i in this.checkarr){
-        sum += this.checkarr[i].count * this.checkarr[i].price;
+          let price = this.checkarr[i].price.split('/')[0].split('￥')[1]
+        sum += this.checkarr[i].num * price;
       }
       return sum;
     }
   },
   mounted() {
     this.$store.commit('hideTabbar')
-    console.log('cart mounted');
+      // console.log(this.$route.params.userid)
+    Axios({
+        url:'/api/cart/list',
+        method:'post',
+        data:{
+            userId:this.$route.params.userid
+        }
+    }).then(res => {
+        let {data} = res;
+        for(let i=0;i<data[0].length;i++){
+            for (let j=0;j<data[1].length;j++){
+                if (data[0][i].shopId == data[1][j].id){
+                    data[1][j].num = data[0][i].num
+                }
+            }
+        }
+        this.shopList = data[1]
+    })
   },
-  destroyed () { 
+  destroyed () {
      this.$store.commit('showTabbar')
-    console.log('cart beforeDestroyed');
-    
-  },
- 
+  }
+
 }
 </script>
 <style lang="scss" scoped>
+
    body{
       position: relative;
-      
+
     header{
       height: 1.5rem;
       background: rgb(236, 84, 89);
@@ -131,7 +193,7 @@ export default {
         margin-left: .1rem;
       }
     }
-   
+
     footer{
       height: .5rem;
       width: 100%;
@@ -219,7 +281,7 @@ export default {
         border-radius: .1rem;
         border: 1px solid #ccc;
         position: relative;
-        
+
       input{
         border: 0;
         position: absolute;
@@ -230,7 +292,7 @@ export default {
         div{
         width:2.5rem;
         height: 100%;
-        // background: #0ff; 
+        // background: #0ff;
         float: right;
         position: relative;
           img{
@@ -245,6 +307,9 @@ export default {
             position: absolute;
             top: .2rem;
             left: .7rem;
+          }
+          .prop{
+            top: .5rem;
           }
           span{
             color: rgb(236, 84, 89);
@@ -314,7 +379,7 @@ export default {
              background: white;
              color: black;
              font-size: .15rem;
-             
+
           }
          }
       }

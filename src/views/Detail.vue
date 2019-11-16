@@ -73,8 +73,8 @@
         </div>
       </main>
       <aside>
-        <router-link to="/cart/${userId}" tag="button">加入购物车</router-link>
-        <router-link to="/cart/${userId}" tag="button">立刻购买</router-link>
+        <button @click="cartClick()">加入购物车</button>
+        <button @click="buyClick()">立刻购买</button>
       </aside>
     </div>
   </body>
@@ -83,6 +83,7 @@
 import swiper from "@/components/swiper";
 import Axios from 'axios'
 import {Indicator} from 'mint-ui'
+import { MessageBox } from 'mint-ui'
 export default {
   mounted() {
       Indicator.open({
@@ -127,7 +128,59 @@ export default {
   methods: {
     handleClick() {
       router.push({ path: `/cart/${userId}` });
-    }
+    },
+      cartClick(){
+          if (!localStorage.getItem("token")){
+              MessageBox.alert('请先登录').then(iii=>{
+                  localStorage.removeItem("token")
+                  this.$router.push('/login')
+              })
+          }else {
+              Axios.get("/api/token/validate",{headers:{Authorization: localStorage.getItem('token')}}).then(res=>{
+                  if (res.data.validate === 0){
+                      MessageBox.alert('请先登录').then(iii=>{
+                          localStorage.removeItem("token")
+                          this.$router.push('/login')
+                      })
+                  }else{
+                      console.log(res.data.id)
+                      console.log(this.$route.params.shopid)
+                      console.log()
+                      Axios({
+                          url:'/api/cart/insert',
+                          method:'post',
+                          data:{
+                              shopId:this.$route.params.shopid,
+                              userId:res.data.id
+                          }
+                      }).then(res => {
+                          if (res.data.insert === 1){
+                              MessageBox.alert('添加成功~')
+                          }
+                      })
+                  }
+              })
+          }
+      },
+      buyClick(){
+        if (!localStorage.getItem("token")){
+            MessageBox.alert('请先登录').then(iii=>{
+                localStorage.removeItem("token")
+                this.$router.push('/login')
+            })
+        }else {
+            Axios.get("/api/token/validate",{headers:{Authorization: localStorage.getItem('token')}}).then(res=>{
+                if (res.data.validate === 0){
+                    MessageBox.alert('请先登录').then(iii=>{
+                        localStorage.removeItem("token")
+                        this.$router.push('/login')
+                    })
+                }else{
+                    this.$router.push(`/cart/${res.data.id}`)
+                }
+            })
+        }
+      }
   }
 };
 </script>

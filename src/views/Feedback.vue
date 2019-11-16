@@ -6,7 +6,7 @@
           </router-link>
         </mt-header>
         <Title class="title"></Title>
-        <DoctorHeader class="doctor"></DoctorHeader>
+        <DoctorHeader class="doctor" :info="info" xxx="xx" v-if="info.length"></DoctorHeader>
         <mt-button type="default" size="large" class="btn" @click="backHandle()">返回首页</mt-button>
         <mt-button type="danger" size="large" class="btn" @click="saveHandle">抓药</mt-button>
     </div>
@@ -14,17 +14,22 @@
 <script>
 import Title from '@/views/My/Title'
 import DoctorHeader from '@/components/DoctorHeader'
+import Axios from 'axios'
 export default {
   data() {
     return {
       clientHeight:{
         height:''
       },
+        info:[]
     }
   },
   components: { Title, DoctorHeader },
   mounted() {
     this.clientHeight.height=document.documentElement.innerHeight-0.5+'rem'
+      Axios.get('/api/feedback/list',{params:{id:this.$store.state.my_title.Id}}).then(res => {
+          this.info = res.data
+      })
   },
   methods: {
     backHandle(){

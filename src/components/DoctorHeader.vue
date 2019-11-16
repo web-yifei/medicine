@@ -1,31 +1,41 @@
 <template>
     <div class="body">
-        <div class="head">
-            <div class="img">
-                <img :src="'http://localhost:3000'+$store.state.my_title.headPic" alt="">
-            </div>
-            <div class="intro">
-                <p>陈亦霏</p>
-                <div> <span>职业中医师</span> <span>疑难病儿科</span></div>
-            </div>
-        </div>
-        <div class="content">
-            <div>
-                <ul>
-                    <li>当归20g 知母15g 生薏仁30g 藏术15g</li>
-                    <li>当归20g 知母15g 生薏仁30g 藏术15g</li>
-                    <li>当归20g 知母15g 生薏仁30g 藏术15g</li>
-                    <li>当归20g 知母15g 生薏仁30g 藏术15g</li>
-                </ul>
-            </div>
-        </div>
+      <div v-for="item of datalist" :key="item._id">
+          <div class="head" >
+              <div class="img">
+                  <img :src="'http://localhost:3000'+item.img" alt="">
+              </div>
+              <div class="intro">
+                  <p>{{item.doctorname}}</p>
+                  <div> <span>{{item.level}}</span> <span>{{item.tag}}</span></div>
+              </div>
+          </div>
+          <div class="content">
+              <div>
+                  <ul>
+                      <li>{{item.content}}</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
     </div>
 </template>
 <script>
 export default {
+    data(){
+        return {
+            datalist:[]
+        }
+    },
+    mounted(){
+      // console.log(this.info)
+        this.datalist = this.info
+        console.log(this.datalist)
+    },
     methods: {
 
     },
+    props:['info','xxx']
 }
 </script>
 <style lang="scss" scoped>
@@ -38,11 +48,13 @@ export default {
             align-items: center;
             justify-content: space-around;
             border-bottom: .01rem solid #ccc;
+          margin-top: -.02rem;
             .img{
                 height: .72rem;
                 width: .72rem;
                 img{
                     width: 100%;
+                  height: 100%;
                     border-radius: 50%;
                 }
             }

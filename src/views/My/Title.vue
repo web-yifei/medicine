@@ -23,6 +23,7 @@ export default {
     methods: {
         logoutClick(id){
             localStorage.removeItem('token')
+            this.$store.commit('deleteInfo')
             this.$router.push('/login')
         }
     },
@@ -38,7 +39,7 @@ export default {
         .img{
             height: .72rem;
             width: .72rem;
-            
+
             img{
                 width: 100%;
                 border-radius: 50%;
