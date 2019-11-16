@@ -100,7 +100,6 @@ main {
     li {
       width: 100%;
       height: 1rem;
-      background: #faf8ec;
       margin-top: 0.08rem;
       display: block;
       dl {
@@ -137,5 +136,11 @@ main {
       }
     }
   }
+}
+li:nth-of-type(odd){
+    background: #e4e4e2;
+}
+li:nth-of-type(even){
+    background: #f4e6db;
 }
 </style>

@@ -59,5 +59,7 @@ html{
       border-radius:.06rem;
       top: .07rem;
     }
-  
+  header{
+    z-index: 2;
+  }
 </style>

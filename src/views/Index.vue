@@ -5,9 +5,9 @@
         <i class="iconfont icon-compass"></i>
         <span>{{ name }}</span>
       </router-link>
-      <input type="text" placeholder="搜索" class="search"><button class="iconfont icon-search"></button>
+      <input type="text" placeholder="搜索" class="search" @focus="search"><button class="iconfont icon-search" @click="search"></button>
 
-      <router-link to="/city" tag="li" class="city ">
+      <router-link to="/my" tag="li" class="city ">
         <i class="iconfont icon-comments"></i>
         <span>消息</span>
       </router-link>
@@ -91,6 +91,10 @@ export default {
     methods:{
       detailClick(id){
           this.$router.push(`/detail/${id}`)
+      },
+      search(){
+        
+        this.$router.push('/search')
       }
     },
   mounted() {

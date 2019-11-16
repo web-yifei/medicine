@@ -29,13 +29,13 @@
               <p>商品详情<i></i></p>
               <p>药材形状:</p>
               <span>{{info.shape}}</span>
-              <p>性味</p>
+              <p>性味:</p>
               <span>{{info.note}}</span>
-              <p>用量</p>
+              <p>用量:</p>
               <span>一次{{info.weight}}</span>
-              <p>储藏方式</p>
+              <p>储藏方式:</p>
               <span>{{info.store}}</span>
-              <p>产地</p>
+              <p>产地:</p>
               <span>{{info.producingArea}}</span>
             </div>
           </li>
@@ -196,7 +196,7 @@ header {
 }
 .swiper-slide {
   width: 100%;
-  height: 1.51rem;
+  height: 2rem;
   background: lightblue;
 }
 /deep/.swiper-pagination {
@@ -211,7 +211,7 @@ ul {
   width: 100%;
   // background: lightpink;
   li:first-child {
-    font-size: 0.25rem;
+    font-size: 0.20rem;
     color: rgb(255, 0, 0);
     font-weight: bold;
     margin-bottom: 0rem;
@@ -229,6 +229,7 @@ ul {
         font-weight: 700;
         border-bottom: #ccc;
         line-height: 0.2rem;
+        margin-bottom: .05rem;
         i {
           width: 0.4rem;
           height: 0.02rem;
@@ -245,6 +246,7 @@ ul {
       }
       p:nth-child(2) {
         width: 100%;
+        
       }
     }
   }
@@ -256,6 +258,7 @@ ul {
     padding-left: 0.1rem;
     padding-right: 0.1rem;
   }
+
 }
 main {
   h3{
@@ -275,6 +278,7 @@ main {
       span {
         line-height: 0.3rem;
         font-weight: 1000;
+        
       }
       p {
         line-height: 0.22rem;
@@ -287,7 +291,7 @@ aside {
   bottom: 0;
   background: #ffffff;
   width: 100%;
-  height: 0.5rem;
+  height: 40px;
   display: flex;
   button:nth-child(1){
     border-right:.02rem solid #ffffff;
@@ -297,8 +301,8 @@ aside {
     color: #ffffff;
     flex: 1;
     text-align: center;
-    font-size: 0.2rem;
-    line-height: 0.5rem;
+    font-size: 0.16rem;
+    line-height: 0.4rem;
     outline: none;
     border: 1px solid transparent;
     border-radius: .05rem;

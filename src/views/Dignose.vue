@@ -1,6 +1,6 @@
 <template>
   <div>
-      <mt-header fixed title="问诊"></mt-header>
+      <mt-header fixed title="问诊" class="dig"></mt-header>
       <swiper
         :options="options"
         v-if="looplist.length"
@@ -91,7 +91,7 @@ header {
   width: 100%;
   height: .20rem;
   color: rgba(16, 16, 16, 1);
-  font-size: 14px;
+  font-size: .14rem;
   text-align: center;
   font-family: PingFangSC-regular;
   margin: 0.27rem 0rem 0.2rem;
@@ -119,8 +119,8 @@ main {
     div {
       background: pink;
       width: 33.333%;
-      height: 175px;
-      line-height: 20px;
+      height: 1.75rem;
+      line-height: .2rem;
       text-align: center;
       border: 1px solid rgba(187, 187, 187, 1);
       margin: 0 0.05rem 0 0;

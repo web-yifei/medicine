@@ -61,9 +61,9 @@
 
 .recommend {
   width: 100%;
-  height: 20px;
+  height: .2rem;
   color: rgba(16, 16, 16, 1);
-  font-size: 14px;
+  font-size: .14rem;
   text-align: center;
   font-family: PingFangSC-regular;
   margin: 0.27rem 0rem 0.2rem;
@@ -91,8 +91,7 @@ main {
     div {
       background: #ffffff;
       width: 33.333%;
-      height: 175px;
-      line-height: 20px;
+      line-height: .2rem;
       text-align: center;
       border: 1px solid rgba(187, 187, 187, 1);
       margin: 0 0.05rem 0 0;
@@ -122,6 +121,8 @@ main {
       }
       i{
         color: #FF9800 ;
+        font-style: normal;
+        padding-left: .05rem;
       }
     }
   }
