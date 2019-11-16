@@ -44,31 +44,9 @@
       <main>
         <h3>用户评论:</h3>
         <div class="big">
-          <div class="pinglun">
-            <span>何仙姑</span>
-            <p>大补元气、复脉固脱、补脾益肺、安神益智</p>
-          </div>
-          <div class="pinglun">
-            <span>何仙姑</span>
-            <p>大补元气、复脉固脱、补脾益肺、安神益智</p>
-          </div>
-          <div class="pinglun">
-            <span>何仙姑</span>
-            <p>大补元气、复脉固脱、补脾益肺、安神益智</p>
-          </div>
-          <div class="pinglun">
-            <span>何仙姑</span>
-            <p>大补元气、复脉固脱、补脾益肺、安神益智</p>
-          </div>
-          <div class="pinglun">
-            <span>何仙姑</span>
-            <p>大补元气、复脉固脱、补脾益肺、安神益智</p>
-          </div>
-          <div class="pinglun">
-            <span>何仙姑</span>
-            <p>
-              大补元气、复脉固脱、补脾益肺、安神益智大补元气、复脉固脱、补脾益肺、安神益智大补元气、复脉固脱、补脾益肺、安神益智大补元气、复脉固脱、补脾益肺、安神益智大补元气、复脉固脱、补脾益肺、安神益智大补元气、复脉固脱、补脾益肺、安神益智
-            </p>
+          <div class="pinglun" v-for="item of commentlist" :key="item._id">
+            <span>{{item.username}}</span>
+            <p>{{item.content}}</p>
           </div>
         </div>
       </main>
@@ -78,9 +56,9 @@
        </el-form-item>
       </el-form>
        <el-row>
-          <el-button >回复</el-button>
+          <el-button @click="submit">回复</el-button>
        </el-row>
-      
+
       <aside>
         <button @click="cartClick()">加入购物车</button>
         <button @click="buyClick()">立刻购买</button>
@@ -103,12 +81,14 @@ export default {
     console.log(this.$route.params.shopid)
     Axios.get("/api/shop/shopDetail",{params:{id:this.$route.params.shopid}}).then(res => {
         this.info = res.data[0]
-        console.log(this.info)
         Indicator.close()
     })
       Axios.get("/api/shop/shopSwiper",{params:{id:this.$route.params.shopid}}).then(res => {
-          console.log(res.data,4565)
           this.looplist = res.data
+      })
+      Axios.get('/api/comment/shop',{params:{shopId:this.$route.params.shopid}}).then(res => {
+          this.commentlist = res.data
+          console.log(this.commentlist)
       })
   },
   destroyed() {
@@ -121,6 +101,7 @@ export default {
     return {
       looplist: [],
         info:"",
+        commentlist:[],
       options: {
         // direction: 'vertical',
         loop: true,
@@ -173,6 +154,31 @@ export default {
                   }
               })
           }
+      },
+      submit(){
+        console.log(this.form.data)
+          console.log(this.$store.state.my_title.Id)
+          console.log(this.$route.params.shopid)
+          if (!this.$store.state.my_title.Id){
+              MessageBox.alert('登陆后方可评论').then(iii=>{
+                  localStorage.removeItem("token")
+                  this.$router.push('/login')
+              })
+          }else{
+              Axios({
+                  method:'post',
+                  url:'/api/comment/insert',
+                  data:{
+                      userId:this.$store.state.my_title.Id,
+                      shopId:this.$route.params.shopid,
+                      content:this.form.data,
+                      username:this.$store.state.my_title.headName
+                  }
+              }).then(res => {
+                  console.log(res.data)
+              })
+          }
+
       },
       buyClick(){
         if (!localStorage.getItem("token")){
@@ -262,7 +268,7 @@ ul {
       }
       p:nth-child(2) {
         width: 100%;
-        
+
       }
     }
   }
@@ -294,7 +300,7 @@ main {
       span {
         line-height: 0.3rem;
         font-weight: 1000;
-        
+
       }
       p {
         line-height: 0.22rem;

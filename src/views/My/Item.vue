@@ -2,7 +2,7 @@
     <ul>
         <li @click="history">问诊记录 <span class="iconfont icon-more"></span></li>
         <li @click="feedClick">问诊反馈 <span class="iconfont icon-more"></span></li>
-        <li>订单记录 <span class="iconfont icon-more"></span></li>
+        <li>我的订单 <span class="iconfont icon-more"></span></li>
         <li @click="amendClick">修改密码 <span class="iconfont icon-more"></span></li>
     </ul>
 </template>
