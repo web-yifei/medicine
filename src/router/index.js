@@ -20,6 +20,7 @@ import SubmitSuccess from "@/views/SubmitSuccess"
 import Show from "@/views/Classify/Show"
 import Hot from '@/views/Index/Hot'
 import History from '@/views/My/History'
+import Search from '@/views/Index/Search'
 Vue.use(VueRouter)
 
 const routes = [
@@ -67,6 +68,10 @@ const routes = [
   {
     path: '/cart/:userid',
     component: Cart
+  },
+  {
+    path:'/search',
+    component:Search
   },
   {
     path: '/calc',

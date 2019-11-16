@@ -87,7 +87,6 @@ export default {
 .briefIntroduction,
 .DoctorServices,
 .Notice{
-    height: 1.5rem;
     padding-left: .15rem;
     padding-right: .15rem;
   }
@@ -134,11 +133,15 @@ export default {
       width: 100%;
     }
     .DoctorServices>p{
-      height: 25px;
-      line-height: 25px;
+      height: .25rem;
+      line-height: .25rem;
+    }
+    .Notice{
+      margin-top: .25rem;
+      margin-bottom: .8rem;
     }
     .Notice>p{
-       height: 25px;
-      line-height: 25px;
+       height: .25rem;
+      line-height: .25rem;
     }
 </style>

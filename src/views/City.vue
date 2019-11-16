@@ -17,6 +17,8 @@
 </template>
 <script>
 import Axios from 'axios'
+import { Indicator } from "mint-ui";
+
 export default {
     data(){
         return{
@@ -28,6 +30,10 @@ export default {
 
     },
     mounted(){
+        Indicator.open({
+            text: "加载中...",
+            spinnerType: "fading-circle"
+        });
         this.indexHeight = document.documentElement.clientHeight - 50+"px"
         Axios({
             url:'https://m.maizuo.com/gateway?k=4032893',
@@ -38,7 +44,8 @@ export default {
         }).then(res=>{
             for(var i=0;i<res.data.data.cities.length; i++){
                 var a = res.data.data.cities[i].cityId
-            this.datalist = this.handleCity(res.data.data.cities)
+                this.datalist = this.handleCity(res.data.data.cities)
+                Indicator.close();
             }
         })
     },
