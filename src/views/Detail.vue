@@ -72,6 +72,15 @@
           </div>
         </div>
       </main>
+      <el-form>
+       <el-form-item label="">
+           <el-input type="textarea" v-model="form.data"></el-input>
+       </el-form-item>
+      </el-form>
+       <el-row>
+          <el-button >回复</el-button>
+       </el-row>
+      
       <aside>
         <button @click="cartClick()">加入购物车</button>
         <button @click="buyClick()">立刻购买</button>
@@ -122,6 +131,9 @@ export default {
         pagination: {
           el: ".swiper-pagination"
         }
+      },
+      form:{
+        data:'',
       }
     };
   },
@@ -191,13 +203,17 @@ header {
   border: 1px solid #ccc;
   width: 100%;
   font-size: 0.18rem;
-  height: 0.54rem;
-  position: relative;
+  height: 0.5rem;
+  position: fixed;
 }
 .swiper-slide {
   width: 100%;
   height: 2rem;
   background: lightblue;
+  margin-top: .5rem;
+  img{
+    height: 2rem;
+  }
 }
 /deep/.swiper-pagination {
   text-align: center;
@@ -308,4 +324,17 @@ aside {
     border-radius: .05rem;
   }
 }
+/deep/.el-textarea__inner{
+  margin-top: .15rem;
+  height: 1rem;
+}
+/deep/.el-form-item{
+  margin-bottom: .12rem;
+}
+/deep/.el-button{
+  background: rgb(250, 90, 90);
+  color: white;
+  margin-left: 3rem;
+}
+
 </style>
